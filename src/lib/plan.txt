@@ -1,0 +1,10 @@
+Main Page:
+Welcome
+Login with google
+Interduction
+
+Workoutside:
+Shows all the different exercises
+
+Userside:
+Shows the workouts you created
