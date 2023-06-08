@@ -8,3 +8,17 @@ Shows all the different exercises
 
 Userside:
 Shows the workouts you created
+
+Db structure:
+
+-Userid:
+    -Workoutplans:
+        -Workoutplan1
+            -Uebung1
+            -Uebung2
+        -Workoutplan2:
+            -Uebung1
+            -Uebung2
+    -Marked Uebuns:
+        -1
+        -2
