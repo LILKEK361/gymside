@@ -11,4 +11,7 @@ module.exports = {
 		extend: {},
 	},
 	plugins: [forms,typography,...skeleton(), require("daisyui")],
+	daisyui : {
+		themes : ["dracula"]
+	}
 }
