@@ -10,7 +10,7 @@
 	<div class="w-[100vw] h-[10vh]">
 		<Navbar ></Navbar>
 	</div>
-	<div class="w-[100vw] h-[90vh] overflow-scroll">
+	<div class="w-[100vw] h-[90vh] overflow-y-scroll">
 		<div class="w-[100%] h-[100%] ">
 			<WelcomeText></WelcomeText>
 		</div>

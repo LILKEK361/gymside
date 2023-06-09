@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^3.0.3",
+		"firebase": "^9.22.2",
 		"svelte-icons": "^2.1.0"
 	}
 }

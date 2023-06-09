@@ -12,7 +12,7 @@
         <div class=" bg-transparent/70 p-16 ">
             <p >Featrues:</p>
             <br>
-            <p  class="hover:text-red-700"><a href="#seconddiv">> Create your own workouts</a></p>
+            <p  class="hover:text-red-700"> > Create your own workouts </p>
             <br>
             <p class="hover:text-red-700">> Manage your own Wwrkouts</p>
             <br>
