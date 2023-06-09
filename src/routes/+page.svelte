@@ -2,6 +2,7 @@
 	import Navbar from "$lib/ui/Navbar.svelte";
 	import UebungCard from "$lib/ui/UebungCard.svelte";
 	import WelcomeText from "$lib/ui/WelcomeText.svelte";
+	import Impressum from "$lib/ui/Impressum.svelte";
 </script>
 
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
@@ -13,6 +14,9 @@
 		<div class="w-[100%] h-[100%] ">
 			<WelcomeText></WelcomeText>
 		</div>
-		<div class="w-[100%] h-[100%] bg-gray-400"></div>
+		<div id="CreateWorkoutplan" class="w-[100%] h-[100%] bg-gray-500">Workoutplan</div>
+		<div id="ManageWorkouts" class="w-[100%] h-[100%] bg-gray-700">ManageWorkouts</div>
+		<div id="QRcode" class="w-[100%] h-[100%] bg-gray-800">QRcode</div>
+		<div class="w-full h-[20vh] bg-black"><Impressum /></div>
 	</div>
 </div>
