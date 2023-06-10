@@ -5,7 +5,12 @@
 	import Impressum from "$lib/ui/Impressum.svelte";
 </script>
 
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
+
+<svelte:head>
+	<title>Gym Manager</title>
+
+</svelte:head>
+
 <div class="w-[100vw] h-[100vh]" data-theme="dracula">
 	<div class="w-[100vw] h-[10vh]">
 		<Navbar ></Navbar>
