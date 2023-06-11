@@ -39,13 +39,13 @@ const firebaseConfig = {
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const authFb = getAuth(app);
 const db = getDatabase(app)
 
 export const userid = writable("")
 
 export async function signup(email : string, password : string){
-    await createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(authFb, email, password)
     .then((userCredential) => {
 
         const user = userCredential.user;
@@ -63,7 +63,7 @@ export async function signup(email : string, password : string){
     return userid;
 }
 export async function login(email : string, password : string){
-    await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(authFb, email, password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
