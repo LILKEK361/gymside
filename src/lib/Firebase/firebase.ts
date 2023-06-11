@@ -2,9 +2,12 @@
 
 import { initializeApp,  } from "firebase/app";
 
-import { getAuth} from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+
+import {getDatabase, ref, set} from "firebase/database"
 
 import { getAnalytics } from "firebase/analytics";
+import {writable} from "svelte/store";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -37,3 +40,63 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getDatabase(app)
+
+export const userid = writable("")
+
+export async function signup(email : string, password : string){
+    await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+
+        const user = userCredential.user;
+
+        createuser(user.uid, "No Name")
+        userid.set(user.uid)
+        return userid;
+
+    })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+    });
+    return userid;
+}
+export async function login(email : string, password : string){
+    await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user.uid)
+            userid.set(user.uid)
+            return userid;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+    return userid;
+
+}
+
+export function createuser(useruid : string, name : string){
+
+    const startref = ref(db, "/user/")
+
+    set(startref, {[useruid] : {
+            name : name,
+            workouts : null,
+
+        }})
+
+
+}
+
+
+
+
+
+
+
+
