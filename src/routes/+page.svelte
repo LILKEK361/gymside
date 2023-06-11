@@ -13,11 +13,11 @@
 
 <div class="w-[100vw] h-[100vh]" data-theme="dracula">
 	<div class="w-[100vw] h-[10vh]">
-		<Navbar ></Navbar>
+		<Navbar/>
 	</div>
 	<div class="w-[100vw] h-[90vh] overflow-y-scroll">
 		<div class="w-[100%] h-[100%] ">
-			<WelcomeText></WelcomeText>
+			<WelcomeText/>
 		</div>
 		<div id="CreateWorkoutplan" class="w-[100%] h-[100%] bg-gray-500">Workoutplan</div>
 		<div id="ManageWorkouts" class="w-[100%] h-[100%] bg-gray-700">ManageWorkouts</div>
