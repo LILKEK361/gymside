@@ -20,12 +20,14 @@ let id : any;
 
 onMount(async () => {
     id = await get(userid);
+    console.log(id)
     console.log(id + "t");
-    await getusername(id) })
+    await getusername(id)
+    })
 
 </script>
 <div class="w-[100vw] h-[100vh] flex">
--
+
     <div class="w-[10vw] h-[100vh]">
         <Sidebar  userid={username}></Sidebar>
     </div>
