@@ -24,7 +24,7 @@
             <p class="py-2" on:click={changepage(2)}>Placeholder</p>
         </li>
         <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
-            <p class="py-2" on:click={changepage(2)}>Placeholder</p>
+            <p class="py-2" on:click={changepage(2)}>Settings</p>
         </li>
 
     </ul>

@@ -44,7 +44,8 @@ const app = initializeApp(firebaseConfig);
 export const authFb = getAuth(app);
 export const db = getDatabase(app)
 
-export const userid = writable()
+
+
 
 export async function signup(email : string, password : string){
     await createUserWithEmailAndPassword(authFb, email, password)
@@ -52,8 +53,10 @@ export async function signup(email : string, password : string){
 
         const user = userCredential.user;
 
-        createuser(user.uid, "No Name")
-        userid.set(user.uid)
+        createuser(user.uid, email)
+        localStorage.setItem("userid", user.uid)
+
+
         goto("userpage")
         return true;
 
@@ -71,8 +74,9 @@ export async function login(email : string, password : string){
             // Signed in
             const user = userCredential.user;
 
-            userid.set(user.uid)
-            console.log(get(userid))
+
+            localStorage.setItem("userid", user.uid)
+
             goto("userpage")
             return true;
             // ...
@@ -85,9 +89,10 @@ export async function login(email : string, password : string){
 
 }
 
+
 export function createuser(useruid : string, name : string){
 
-    const startref = ref(db, "/user/" + useruid)
+    const startref = ref(db, "/user/" + localStorage.getItem("userid"))
 
     set(startref, {
             name : name,
@@ -98,7 +103,19 @@ export function createuser(useruid : string, name : string){
 
 }
 
+export function changeusername(newname : string ){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid"))
+    set(startref, {name : newname})
+}
 
+export function addnew(name : string,level : string, ausführung : string, ){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name )
+    set(startref, {
+        name : name,
+        level : level,
+        way : ausführung,
+    } )
+}
 
 
 
