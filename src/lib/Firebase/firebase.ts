@@ -6,8 +6,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 
 import {getDatabase, ref, set} from "firebase/database"
 
-import { getAnalytics } from "firebase/analytics";
-import {writable} from "svelte/store";
+import useruidFB  from "../../routes/userpage/+page.svelte"
+
+import {get, writable} from "svelte/store";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -42,7 +43,7 @@ const app = initializeApp(firebaseConfig);
 export const authFb = getAuth(app);
 const db = getDatabase(app)
 
-export const userid = writable("")
+export const userid = writable()
 
 export async function signup(email : string, password : string){
     await createUserWithEmailAndPassword(authFb, email, password)
@@ -52,7 +53,7 @@ export async function signup(email : string, password : string){
 
         createuser(user.uid, "No Name")
         userid.set(user.uid)
-        return userid;
+        return true;
 
     })
         .catch((error) => {
@@ -60,23 +61,24 @@ export async function signup(email : string, password : string){
         const errorMessage = error.message;
         // ..
     });
-    return userid;
+    return true;
 }
 export async function login(email : string, password : string){
     await signInWithEmailAndPassword(authFb, email, password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user.uid)
+
             userid.set(user.uid)
-            return userid;
+            console.log(get(userid))
+            return true;
             // ...
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
         });
-    return userid;
+    return true;
 
 }
 

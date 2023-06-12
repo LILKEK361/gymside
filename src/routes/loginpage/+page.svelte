@@ -4,6 +4,7 @@
 import WelcomeText from "$lib/ui/WelcomeText.svelte";
 import {login, signup, authFb} from "$lib/Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import {goto} from "$app/navigation";
 
 
 
@@ -12,21 +13,23 @@ import { onAuthStateChanged } from "firebase/auth";
 let email : any
 let password : any
 let usersignin : any
-function loginuser(){
+async function loginuser(){
 
 
-    usersignin = login(email.value, password.value)
-
-
-
+    let t = await login(email.value, password.value)
+    if(t) {
+       await goto("userpage")
+    }
     //password.value = ""
     //email.value = ""
 
 }
-function signupuser() {
+async function signupuser() {
 
-    usersignin = signup(email.value, password.value)
-    console.log(usersignin)
+    let t = await signup(email.value, password.value)
+    if(t) {
+        await goto("userpage")
+    }
 //password.value = ""
 //email.value = ""
 }

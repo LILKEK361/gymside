@@ -6,32 +6,6 @@
 	import {login, signup, authFb} from "$lib/Firebase/firebase";
 	import { onAuthStateChanged } from "firebase/auth";
 
-
-
-
-
-	let email : any
-	let password : any
-	let usersignin : any
-	function loginuser(){
-
-
-		usersignin = login(email.value, password.value)
-
-
-
-		//password.value = ""
-		//email.value = ""
-
-	}
-	function signupuser(){
-
-		usersignin = signup(email.value, password.value)
-		console.log(usersignin)
-		//password.value = ""
-		//email.value = ""
-
-	}
 </script>
 
 
