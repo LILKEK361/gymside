@@ -9,6 +9,7 @@ import {getDatabase, ref, set} from "firebase/database"
 import useruidFB  from "../../routes/userpage/+page.svelte"
 
 import {get, writable} from "svelte/store";
+import {goto} from "$app/navigation";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -41,7 +42,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const authFb = getAuth(app);
-const db = getDatabase(app)
+export const db = getDatabase(app)
 
 export const userid = writable()
 
@@ -53,6 +54,7 @@ export async function signup(email : string, password : string){
 
         createuser(user.uid, "No Name")
         userid.set(user.uid)
+        goto("userpage")
         return true;
 
     })
@@ -71,6 +73,7 @@ export async function login(email : string, password : string){
 
             userid.set(user.uid)
             console.log(get(userid))
+            goto("userpage")
             return true;
             // ...
         })
@@ -84,13 +87,13 @@ export async function login(email : string, password : string){
 
 export function createuser(useruid : string, name : string){
 
-    const startref = ref(db, "/user/")
+    const startref = ref(db, "/user/" + useruid)
 
-    set(startref, {[useruid] : {
+    set(startref, {
             name : name,
             workouts : null,
 
-        }})
+        })
 
 
 }

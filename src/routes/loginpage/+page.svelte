@@ -17,9 +17,7 @@ async function loginuser(){
 
 
     let t = await login(email.value, password.value)
-    if(t) {
-       await goto("userpage")
-    }
+
     //password.value = ""
     //email.value = ""
 
@@ -27,9 +25,7 @@ async function loginuser(){
 async function signupuser() {
 
     let t = await signup(email.value, password.value)
-    if(t) {
-        await goto("userpage")
-    }
+
 //password.value = ""
 //email.value = ""
 }
@@ -56,8 +52,9 @@ async function signupuser() {
                     <li><input bind:this={email}  type="text" placeholder="E-Mail" class=" m-4 rounded-full"></li>
                     <li><input bind:this={password} type="text" placeholder="password" class="m-2 rounded-full"></li>
                     <li class="pt-5">
-                        <button on:click={loginuser} class="pr-3 bg-purple-800 text-black">Login</button>
                         <button on:click={signupuser} class="pr-3 bg-purple-800 text-black">Sign Up</button>
+
+                        <button on:click={loginuser} class="pr-3 bg-purple-800 text-black">Login</button>
                     </li>
                 </ul>
             </div>
