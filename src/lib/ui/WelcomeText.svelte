@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<div class="w-full h-full flex overflow-hidden" style="background-image: url('mainbg.png'); background-repeat: no-repeat; background-size: cover;
+<div class="w-full h-full flex overflow-hidden" style="background-image: url('src/lib/logo/mainbg.png'); background-repeat: no-repeat; background-size: cover;
 
  ">
     <div class="h-[100%] w-[50%]  flex justify-center items-center ">

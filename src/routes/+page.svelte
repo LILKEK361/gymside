@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Navbar from "$lib/ui/Navbar.svelte";
-	import UebungCard from "$lib/ui/UebungCard.svelte";
+
 	import WelcomeText from "$lib/ui/WelcomeText.svelte";
 	import Impressum from "$lib/ui/Impressum.svelte";
-	import {login, signup, authFb} from "$lib/Firebase/firebase";
-	import { onAuthStateChanged } from "firebase/auth";
+
 
 </script>
 
