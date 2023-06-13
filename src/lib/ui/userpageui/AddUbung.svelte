@@ -5,12 +5,13 @@
     let level
     let way
     let muscel
-    function check(){
+
+    function check() {
         console.log(name.value)
-        if(name.value === "" || level.value === "" || way.value === "" || muscel.value === ""){
+        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "") {
 
             alert("Pls fill every input")
-        }else{
+        } else {
             addnew(name.value, level.value, way.value, muscel.value)
             level.value = ""
             name.value = ""
@@ -19,18 +20,38 @@
         }
     }
 </script>
-
-
+<svelte:head>
+    <link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
+</svelte:head>
 
 <div class="h-[100%] w-[100%] flex justify-center items-center">
-    <div class="w-[50%] h-[10%] bg-black   text-black">
+    <div style="width: 40vw;
+                height: 60vh;
+                border-radius: 30px;
+                background: #212121;
+                box-shadow: 15px 15px 30px rgb(25, 25, 25),
+                -15px -15px 30px rgb(60, 60, 60);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                ">
+        <ul>
+            <li>
+               
+                <input bind:this={name} class="my-10" placeholder="Name" type="text">
+            </li>
+            <li>
+                <input bind:this={level} class="my-10" placeholder="Level" type="text">
+            </li>
+            <li>
+                <input bind:this={way} class="my-10" placeholder="execution" type="text">
+            </li>
+            <li>
+                <input bind:this={muscel} class="my-10 text-black" placeholder="muscelgroup" type="text">
+            </li>
+        </ul>
 
-               <input bind:this={name} type="text" class="mr-10" placeholder="Name" >
-               <input bind:this={level} type="text" class="mr-10"  placeholder="Level">
-               <input bind:this={way} type="text" class="mr-10" placeholder="execution">
-               <input bind:this={muscel} type="text" class="mr-10 text-black" placeholder="muscelgroup" >
-
-           <li><button on:click={check} class="btn">Add new</button></li>
+            <button class="btn" on:click={check}>Add new</button>
 
 
 

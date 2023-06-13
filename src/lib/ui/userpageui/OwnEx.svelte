@@ -20,7 +20,7 @@
 </script>
 
 {#if names && ex}
-    <div class="w-[100%] h-[100%] bg-green-700 overflow-hidden flex">
+    <div class="w-[100%] h-[100%] bg-green-700 overflow-hidden flex justify-center items-center">
         {#each names as name }
             <UebungCard
                     exercisename={name}

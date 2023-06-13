@@ -65,9 +65,9 @@ async function signupuser() {
                         <input bind:this={password} type="text" placeholder="password" class="m-4 rounded-full text-black">
                     </li>
                     <li class="pt-5">
-                        <button on:click={signupuser} class="pr-3 bg-purple-800 text-black px-3 text-center rounded">Sign Up</button>
+                        <button on:click={signupuser} class=" h-[5vh] w-[10vw]  bg-purple-800 text-black px-3 text-center rounded ">Sign Up</button>
+                        <button on:click={loginuser} class=" h-[5vh] w-[10vw] bg-purple-800 text-black px-3 rounded">Login</button>
 
-                        <button on:click={loginuser} class="pr-3 bg-purple-800 text-black px-3 rounded">Login</button>
                     </li>
                 </ul>
             </div>

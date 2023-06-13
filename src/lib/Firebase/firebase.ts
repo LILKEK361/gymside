@@ -101,8 +101,8 @@ export async function createuser( name : string){
 }
 
 export async function changeusername(newname : string ){
-    const startref = ref(db, "user/" + await localStorage.getItem("userid") + "/")
-    await set(startref, {name : newname})
+    const startref = ref(db, "user/" + await localStorage.getItem("userid") + "/name/")
+    await set(startref, newname)
 }
 
 export async function addnew(name : string,level : string, ausfuehrung : string,  muscelgroup : string){
