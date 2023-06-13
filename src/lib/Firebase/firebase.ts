@@ -4,7 +4,7 @@ import { initializeApp,  } from "firebase/app";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 
-import {getDatabase, ref, set} from "firebase/database"
+import {getDatabase, onValue, ref, set} from "firebase/database"
 
 import useruidFB  from "../../routes/userpage/+page.svelte"
 
@@ -43,6 +43,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const authFb = getAuth(app);
 export const db = getDatabase(app)
+
+export const namesEx = writable([])
+export const ownEx = writable({})
 
 
 
@@ -119,6 +122,34 @@ export function addnew(name : string,level : string, ausführung : string, ){
 
 
 
+export async function getOwnEx(){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    let names  = [];
+    let ex = {}
+
+    await onValue(startref, (snapshot) => {
+
+        ex = snapshot.val()
+        snapshot.forEach((child) => {
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            names = [...names, child.key]
+
+        })
+    })
+
+
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await namesEx.set(names)
+    await ownEx.set(ex)
+    console.log(get(namesEx))
+
+}
 
 

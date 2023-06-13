@@ -1,11 +1,12 @@
 <script lang="ts">
 import {writable, get} from "svelte/store";
-import { db} from "$lib/Firebase/firebase";
+import {db, getOwnEx} from "$lib/Firebase/firebase";
 import {onMount} from "svelte";
 import Sidebar from "$lib/ui/Sidebar.svelte";
 import {ref, onValue} from "firebase/database";
 import Settings from "$lib/ui/userpageui/Settings.svelte";
 import AddUbung from "$lib/ui/userpageui/AddUbung.svelte";
+import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
 
 let username : string
 
@@ -25,6 +26,7 @@ onMount(async () => {
 
     console.log(id);
     await getusername(id)
+    await getOwnEx()
     })
 let page = 0;
 function changeslot(i : number){
@@ -45,6 +47,8 @@ function changeslot(i : number){
             {:else if page === 1}
             <AddUbung></AddUbung>
             {:else if page === 2}
+            <OwnEx></OwnEx>
+            {:else if page === 3}
             <Settings></Settings>
         {/if}
     </div>
