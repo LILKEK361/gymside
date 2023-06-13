@@ -3,8 +3,11 @@
 
 	import WelcomeText from "$lib/ui/WelcomeText.svelte";
 	import Impressum from "$lib/ui/Impressum.svelte";
+	import {onMount} from "svelte";
 
-
+onMount(() => {
+	localStorage.setItem("userid", "")
+})
 </script>
 
 

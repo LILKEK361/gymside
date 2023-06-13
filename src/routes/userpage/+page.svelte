@@ -1,6 +1,6 @@
 <script lang="ts">
 import {writable, get} from "svelte/store";
-import {db, getOwnEx} from "$lib/Firebase/firebase";
+import {createuser, db, getOwnEx} from "$lib/Firebase/firebase";
 import {onMount} from "svelte";
 import Sidebar from "$lib/ui/Sidebar.svelte";
 import {ref, onValue} from "firebase/database";

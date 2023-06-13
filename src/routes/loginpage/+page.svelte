@@ -2,9 +2,10 @@
 
 
 import WelcomeText from "$lib/ui/WelcomeText.svelte";
-import {login, signup, authFb} from "$lib/Firebase/firebase";
+import {login, signup, authFb, createuser} from "$lib/Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {goto} from "$app/navigation";
+import {onMount} from "svelte";
 
 
 
@@ -13,10 +14,14 @@ import {goto} from "$app/navigation";
 let email : any
 let password : any
 let usersignin : any
+onMount(() => {
+    localStorage.setItem("userid", "")
+})
 async function loginuser(){
 
 
     let t = await login(email.value, password.value)
+
 
     //password.value = ""
     //email.value = ""

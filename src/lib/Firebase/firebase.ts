@@ -56,9 +56,10 @@ export async function signup(email : string, password : string){
 
         const user = userCredential.user;
 
-        createuser(user.uid, email)
-        localStorage.setItem("userid", user.uid)
 
+
+        localStorage.setItem("userid", user.uid)
+        createuser("new member")
 
         goto("userpage")
         return true;
@@ -93,30 +94,24 @@ export async function login(email : string, password : string){
 }
 
 
-export function createuser(useruid : string, name : string){
+export async function createuser( name : string){
 
-    const startref = ref(db, "/user/" + localStorage.getItem("userid"))
-
-    set(startref, {
-            name : name,
-            workouts : null,
-
-        })
-
+        await changeusername(name)
 
 }
 
-export function changeusername(newname : string ){
-    const startref = ref(db, "/user/" + localStorage.getItem("userid"))
-    set(startref, {name : newname})
+export async function changeusername(newname : string ){
+    const startref = ref(db, "user/" + await localStorage.getItem("userid") + "/")
+    await set(startref, {name : newname})
 }
 
-export function addnew(name : string,level : string, ausführung : string, ){
-    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name )
+export async function addnew(name : string,level : string, ausfuehrung : string,  muscelgroup : string){
+    const startref = ref(db, "/user/" + await localStorage.getItem("userid") + "/ownEx/" + name )
     set(startref, {
         name : name,
         level : level,
-        way : ausführung,
+        way : ausfuehrung,
+        muscelgroup : muscelgroup
     } )
 }
 
@@ -124,7 +119,8 @@ export function addnew(name : string,level : string, ausführung : string, ){
 
 export async function getOwnEx(){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
-
+    localStorage.setItem("namesEx", "")
+    localStorage.setItem("ownEx", "")
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     let names  = [];
@@ -133,6 +129,7 @@ export async function getOwnEx(){
     await onValue(startref, (snapshot) => {
 
         ex = snapshot.val()
+        console.log(snapshot.val())
         snapshot.forEach((child) => {
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -140,15 +137,16 @@ export async function getOwnEx(){
             names = [...names, child.key]
 
         })
-    })
+        localStorage.setItem("namesEx", names)
+        localStorage.setItem("ownEx", JSON.stringify(ex))
 
+    })
+    console.log(localStorage.getItem("ownEx"))
 
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    await namesEx.set(names)
-    await ownEx.set(ex)
-    console.log(get(namesEx))
+
 
 }
 

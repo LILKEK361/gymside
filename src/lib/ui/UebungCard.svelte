@@ -4,6 +4,8 @@
     export let Muskelgroup;
     export let doing;
 
+    export let level
+
 
 </script>
 
@@ -18,5 +20,6 @@
         <h2 class="card-title">Exercise: {exercisename}</h2>
         <p>Muscle group: {Muskelgroup}</p>
         <p>Execution: {doing}</p>
+        <p>Level: {level}</p>
     </div>
 </div>

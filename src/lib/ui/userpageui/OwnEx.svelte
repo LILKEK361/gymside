@@ -2,19 +2,16 @@
 
 
     import {onMount} from "svelte";
-    import {get, writable} from "svelte/store";
-    import {namesEx, ownEx} from "$lib/Firebase/firebase";
+
     import UebungCard from "$lib/ui/UebungCard.svelte";
+    import {getOwnEx} from "$lib/Firebase/firebase";
     let names;
     let ex;
 
-    onMount(  () =>{
-        names   = get(namesEx)
-        ex      = get(ownEx)
-        console.log(names)
-
-
-
+    onMount( async () =>{
+        await getOwnEx()
+        names   = localStorage.getItem("namesEx")?.split(",")
+        ex      = JSON.parse(localStorage.getItem("ownEx"))
 
     })
 
@@ -23,9 +20,14 @@
 </script>
 
 {#if names && ex}
-    <div class="w-[100%] h-[100%] bg-green-700">
-        {#each names as n }
-            <UebungCard exercisename={n} doing={ex.n.way} Muskelgroup={"Beine"} />
+    <div class="w-[100%] h-[100%] bg-green-700 overflow-hidden flex">
+        {#each names as name }
+            <UebungCard
+                    exercisename={name}
+                    doing={ex[name].way}
+                    Muskelgroup={ex[name].muscelgroup}
+                    level={ex[name].level}
+            />
         {/each}
     </div>
     {:else}
