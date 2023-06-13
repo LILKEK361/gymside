@@ -1,14 +1,12 @@
 // Import the functions you need from the SDKs you need
 
-import { initializeApp,  } from "firebase/app";
+import {initializeApp,} from "firebase/app";
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth"
 
 import {getDatabase, onValue, ref, set} from "firebase/database"
 
-import useruidFB  from "../../routes/userpage/+page.svelte"
-
-import {get, writable} from "svelte/store";
+import {writable} from "svelte/store";
 import {goto} from "$app/navigation";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -137,17 +135,21 @@ export async function getOwnEx(){
             names = [...names, child.key]
 
         })
-        localStorage.setItem("namesEx", names)
-        localStorage.setItem("ownEx", JSON.stringify(ex))
-
+        if(ex && names) {
+            localStorage.setItem("namesEx", names)
+            localStorage.setItem("ownEx", JSON.stringify(ex))
+        }else{
+            localStorage.setItem("namesEx", "")
+            localStorage.setItem("ownEx", JSON.stringify(""))
+        }
     })
     console.log(localStorage.getItem("ownEx"))
-
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-
-
 }
 
+export function deleteEx(name : string){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
+    set(startref, null ).catch((error) => {
+        const errorcode = error.code
+    })
+}
 

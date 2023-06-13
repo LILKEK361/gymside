@@ -1,10 +1,14 @@
 <script lang="ts">
 
+    import {deleteEx} from "$lib/Firebase/firebase";
+
     export let exercisename;
     export let Muskelgroup;
     export let doing;
 
     export let level
+
+
 
 
 </script>
@@ -21,6 +25,6 @@
         <p>Level: {level}</p>
         <p>Muscle group: {Muskelgroup}</p>
         <p>Execution: {doing}</p>
-
+        <button class="btn" on:click={deleteEx(exercisename)}>Delete</button>
     </div>
 </div>
