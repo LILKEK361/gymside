@@ -31,5 +31,5 @@
         {/each}
     </div>
     {:else}
-    <p>Loading</p>
+    <h1>You didnt create any Exercises</h1>
 {/if}

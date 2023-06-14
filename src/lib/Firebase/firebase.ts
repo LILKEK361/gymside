@@ -127,7 +127,7 @@ export async function getOwnEx(){
     await onValue(startref, (snapshot) => {
 
         ex = snapshot.val()
-        console.log(snapshot.val())
+
         snapshot.forEach((child) => {
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -143,7 +143,7 @@ export async function getOwnEx(){
             localStorage.setItem("ownEx", JSON.stringify(""))
         }
     })
-    console.log(localStorage.getItem("ownEx"))
+
 }
 
 export function deleteEx(name : string){
