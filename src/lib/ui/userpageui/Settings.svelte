@@ -1,5 +1,6 @@
 <script lang="ts">
     import {changeusername} from "$lib/Firebase/firebase";
+    import {goto} from "$app/navigation";
     let input;
     function check(){
         if(input.value === ""){
@@ -9,13 +10,24 @@
             input.value = ""
         }
     }
+    function signout(){
+        localStorage.setItem("userid", "")
+        goto("loginpage");
+        console.log(localStorage.getItem("userid"))
+    }
 </script>
 
 <div class="h-[100%] w-[100%] flex justify-center items-center">
-    <div class="w-[50%] h-[10%] bg-black flex justify-center items-center">
-        <input bind:this={input} type="text" class="mr-10" >
-        <button on:click={check} class="btn">Changeusername</button>
+    <div class="w-[50%] h-[50%]">
+        <div class=" p-10 bg-black flex justify-center items-center">
+            <input bind:this={input} type="text" class="mr-10" >
+            <button on:click={check} class="btn">Changeusername</button>
+        </div>
+        <div class="p-10 bg-black flex justify-center items-center">
+            <button on:click={signout} class="btn">Sign Out</button>
+        </div>
     </div>
+
 
 </div>
 

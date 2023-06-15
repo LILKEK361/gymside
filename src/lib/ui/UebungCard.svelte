@@ -16,7 +16,7 @@
 
 
 
-<div class="card  w-[20vw] bg-base-100 shadow-xl">
+<div class="card  w-[20vw] bg-base-100 shadow-xl overflow-hidden" >
     <figure class="px-10 pt-10">
         <img src="src/lib/logo/OnlyLogo.png" alt="Shoes" class="rounded-xl" />
     </figure>

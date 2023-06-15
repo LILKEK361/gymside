@@ -18,11 +18,14 @@
 
 
 
+
 </script>
 
 {#if names && ex}
-    <div class="w-[100%] h-[100%] bg-green-700 overflow-hidden flex justify-center items-center">
-        <UebungsCardRow names={[names[0], names[1], names[2], names[3]]} ex={ex}></UebungsCardRow>
+    <div class="w-[100%] h-[100%] bg-green-700 overflow-x-hidden flex justify-center items-center">
+        {#each names as name}
+            <UebungCard exercisename={name} doing={ex[name].way} level={ex[name].level} Muskelgroup={ex[name].muscelgroup}></UebungCard>
+        {/each}
     </div>
     {:else}
     <h1>You didnt create any Exercises</h1>
