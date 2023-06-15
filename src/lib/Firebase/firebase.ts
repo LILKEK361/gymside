@@ -2,12 +2,26 @@
 
 import {initializeApp,} from "firebase/app";
 
-import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth"
+import {
+    createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup,GithubAuthProvider
+} from "firebase/auth"
 
 import {getDatabase, onValue, ref, set} from "firebase/database"
 
 import {writable} from "svelte/store";
 import {goto} from "$app/navigation";
+import 'firebase/firestore'
+
+import 'firebase/auth';
+
+
+
+
+
+
+const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
+const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -46,31 +60,29 @@ export const namesEx = writable([])
 export const ownEx = writable({})
 
 
-
-
-export async function signup(email : string, password : string){
+export async function signup(email: string, password: string) {
     await createUserWithEmailAndPassword(authFb, email, password)
-    .then((userCredential) => {
+        .then((userCredential) => {
 
-        const user = userCredential.user;
+            const user = userCredential.user;
 
 
+            localStorage.setItem("userid", user.uid)
+            createuser("new member")
 
-        localStorage.setItem("userid", user.uid)
-        createuser("new member")
+            goto("userpage")
+            return true;
 
-        goto("userpage")
-        return true;
-
-    })
+        })
         .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
     return true;
 }
-export async function login(email : string, password : string){
+
+export async function login(email: string, password: string) {
     await signInWithEmailAndPassword(authFb, email, password)
         .then((userCredential) => {
             // Signed in
@@ -92,36 +104,32 @@ export async function login(email : string, password : string){
 }
 
 
-export async function createuser( name : string){
+export async function createuser(name: string) {
 
-        await changeusername(name)
+    await changeusername(name)
 
 }
 
-export async function changeusername(newname : string ){
+export async function changeusername(newname: string) {
     const startref = ref(db, "user/" + await localStorage.getItem("userid") + "/name/")
     await set(startref, newname)
 }
 
-export async function addnew(name : string,level : string, ausfuehrung : string,  muscelgroup : string){
-    const startref = ref(db, "/user/" + await localStorage.getItem("userid") + "/ownEx/" + name )
+export async function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string) {
+    const startref = ref(db, "/user/" + await localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, {
-        name : name,
-        level : level,
-        way : ausfuehrung,
-        muscelgroup : muscelgroup
-    } )
+        name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup
+    })
 }
 
 
-
-export async function getOwnEx(){
+export async function getOwnEx() {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
     localStorage.setItem("namesEx", "")
     localStorage.setItem("ownEx", "")
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let names  = [];
+    let names = [];
     let ex = {}
 
     await onValue(startref, (snapshot) => {
@@ -135,10 +143,10 @@ export async function getOwnEx(){
             names = [...names, child.key]
 
         })
-        if(ex && names) {
+        if (ex && names) {
             localStorage.setItem("namesEx", names)
             localStorage.setItem("ownEx", JSON.stringify(ex))
-        }else{
+        } else {
             localStorage.setItem("namesEx", "")
             localStorage.setItem("ownEx", JSON.stringify(""))
         }
@@ -146,10 +154,51 @@ export async function getOwnEx(){
 
 }
 
-export function deleteEx(name : string){
+export function deleteEx(name: string) {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
-    set(startref, null ).catch((error) => {
+    set(startref, null).catch((error) => {
         const errorcode = error.code
     })
 }
 
+export async function loginWithGoogle() {
+
+   await signInWithPopup(authFb, googleAuthProvider)
+        .then((result) => {
+
+            // The signed-in user info.
+            const user = result.user;
+            localStorage.setItem("userid", user.uid)
+            console.log(localStorage.getItem("userid"))
+            createuser("new member")
+            goto("userpage")
+            return true;
+
+        }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+    });
+
+}
+
+export  async function loginWithGit(){
+    await signInWithPopup(authFb, githubAuthProvider)
+        .then((result) => {
+
+            // The signed-in user info.
+            const user = result.user;
+            localStorage.setItem("userid", user.uid)
+            console.log(localStorage.getItem("userid"))
+            createuser("new member")
+            goto("userpage")
+            return true;
+
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+        });
+}
