@@ -2,8 +2,8 @@
 
     import UebungCard from "$lib/ui/UebungCard.svelte";
 
-    export const names = []
-    export const ex = {}
+    export let names;
+    export let ex;
 </script>
 
 <div class="w-[100%] h-[30%] flex justify-center items-center">
