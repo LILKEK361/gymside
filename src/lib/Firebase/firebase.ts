@@ -202,3 +202,10 @@ export  async function loginWithGit(){
 
         });
 }
+
+export function createWorkout(name : string, uebungen : any){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")
+    set(startref, {
+        [name] : uebungen
+    })
+}

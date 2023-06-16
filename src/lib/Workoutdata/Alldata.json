@@ -1,0 +1,72 @@
+{
+  "legs": [
+    {
+      "name": "Squats",
+      "description": "Stand with feet shoulder-width apart. Bend your knees and lower your body as if you're sitting back into a chair. Keep your chest upright and your knees in line with your toes. Push through your heels to stand back up.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Lunges",
+      "description": "Take a step forward with your right leg and lower your body into a lunge position. Both knees should be bent at a 90-degree angle. Push off with your right foot to return to the starting position and repeat on the other side.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Deadlifts",
+      "description": "Stand with your feet shoulder-width apart, knees slightly bent. Keeping your back straight, hinge forward at the hips and lower the weights (or your body) toward the ground. Push through your heels to lift the weights back up.",
+      "level": "Advanced"
+    }
+  ],
+  "chest": [
+    {
+      "name": "Push-ups",
+      "description": "Start in a plank position with your hands shoulder-width apart. Lower your body by bending your elbows until your chest nearly touches the floor. Push back up to the starting position.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Bench Press",
+      "description": "Lie on a flat bench with your feet flat on the floor. Grasp the barbell with an overhand grip, hands slightly wider than shoulder-width apart. Lower the bar to your chest and then push it back up to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Dumbbell Flyes",
+      "description": "Lie on a flat bench with a dumbbell in each hand. Extend your arms above your chest, palms facing each other. Lower the dumbbells out to the sides in a wide arc until you feel a stretch in your chest. Bring the dumbbells back up to the starting position.",
+      "level": "Advanced"
+    }
+  ],
+  "back": [
+    {
+      "name": "Pull-ups",
+      "description": "Hang from a bar with your palms facing away from you, hands slightly wider than shoulder-width apart. Pull yourself up until your chin is above the bar, then lower yourself back down with control.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Barbell Rows",
+      "description": "Stand with your feet shoulder-width apart, knees slightly bent. Bend forward at the hips while keeping your back straight. Grasp a barbell with an overhand grip, hands slightly wider than shoulder-width apart. Pull the barbell up towards your lower chest, squeezing your shoulder blades together. Lower the barbell back down.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Deadlifts",
+      "description": "Stand with your feet shoulder-width apart, knees slightly bent. Keeping your back straight, hinge forward at the hips and lower the weights (or your body) toward the ground. Push through your heels to lift the weights back up.",
+      "level": "Advanced"
+    }
+
+  ],
+  "arms": [
+    {
+      "name": "Bicep Curls",
+      "description": "Stand with a dumbbell in each hand, palms facing forward. Keep your upper arms stationary, exhale, and curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level. Lower the weights back to the starting position.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Tricep Dips",
+      "description": "Sit on a chair or bench with your hands next to your hips, fingers pointing forward. Slide your hips forward off the bench. Lower your body by bending your elbows until your upper arms are parallel to the floor. Push yourself back up to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Hammer Curls",
+      "description": "Stand with a dumbbell in each hand, palms facing your torso. Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level. Lower the weights back to the starting position.",
+      "level": "Advanced"
+    }
+
+  ]
+}

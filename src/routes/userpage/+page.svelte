@@ -7,6 +7,7 @@ import {ref, onValue} from "firebase/database";
 import Settings from "$lib/ui/userpageui/Settings.svelte";
 import AddUbung from "$lib/ui/userpageui/AddUbung.svelte";
 import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
+import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
 
 let username : string
 
@@ -43,7 +44,7 @@ function changeslot(i : number){
 
     <div class="w-[90vw] h-[100vh] bg-[#212B36]">
         {#if page === 0}
-            <p>Manage Workouts</p>
+            <WorkoutComponent></WorkoutComponent>
             {:else if page === 1}
             <AddUbung></AddUbung>
             {:else if page === 2}

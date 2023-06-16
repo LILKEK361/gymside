@@ -63,6 +63,7 @@
                             Google
                         </button>
                     </li>
+                    <div class="divider">OR</div>
                     <li>
                         <input bind:this={email} class=" m-4 rounded-full text-black  " placeholder="E-Mail"
                                type="text">
