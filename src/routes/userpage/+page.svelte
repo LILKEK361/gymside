@@ -8,6 +8,7 @@ import Settings from "$lib/ui/userpageui/Settings.svelte";
 import AddUbung from "$lib/ui/userpageui/AddUbung.svelte";
 import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
 import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
+import AddWorkout from "$lib/ui/userpageui/AddWorkout.svelte";
 
 let username : string
 
@@ -46,10 +47,12 @@ function changeslot(i : number){
         {#if page === 0}
             <WorkoutComponent></WorkoutComponent>
             {:else if page === 1}
-            <AddUbung></AddUbung>
+            <AddWorkout></AddWorkout>
             {:else if page === 2}
-            <OwnEx></OwnEx>
+            <AddUbung></AddUbung>
             {:else if page === 3}
+            <OwnEx></OwnEx>
+            {:else if page === 4}
             <Settings></Settings>
         {/if}
     </div>

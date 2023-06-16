@@ -15,16 +15,19 @@
             <p class="py-2" on:click={changepage(0)}>Manage Workoutplans</p>
         </li>
         <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
-            <p class="py-2" on:click={changepage(1)}>Create new </p>
+            <p class="py-2" on:click={changepage(1)}>Create new Workout </p>
         </li>
         <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
-            <p class="py-2" on:click={changepage(2)}>Own Ex</p>
+            <p class="py-2" on:click={changepage(2)}>Create new </p>
         </li>
         <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
-            <p class="py-2" on:click={changepage(2)}>Placeholder</p>
+            <p class="py-2" on:click={changepage(3)}>Own Ex</p>
         </li>
         <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
-            <p class="py-2" on:click={changepage(3)}>Settings</p>
+            <p class="py-2" on:click={changepage(4)}>Placeholder</p>
+        </li>
+        <li class="hover:bg-[#212B36] text-center my-5  text-xl hover:rounded-l-xl">
+            <p class="py-2" on:click={changepage(4)}>Settings</p>
         </li>
 
     </ul>
