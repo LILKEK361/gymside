@@ -38,6 +38,12 @@
         }
 
     }
+    function removeUe(name : string){
+
+            newWorkout = newWorkout.filter(e => e !== name);
+            console.log(newWorkout)
+
+    }
 
 </script>
 
@@ -87,7 +93,7 @@
             </li>
             <li>
                 {#each newWorkout as ue}
-                <p>{ue}</p>
+                <p ><button on:click={removeUe(ue)}>X</button> {ue}</p>
                 {/each}
                 </li>
         </ul>

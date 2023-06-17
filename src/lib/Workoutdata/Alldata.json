@@ -1,5 +1,5 @@
 {
-  "legs" : [
+  "legs": [
     {
       "name": "Squats",
       "description": "Stand with feet shoulder-width apart. Bend your knees and lower your body as if you're sitting back into a chair. Keep your chest upright and your knees in line with your toes. Push through your heels to stand back up.",
@@ -13,6 +13,31 @@
     {
       "name": "Deadlifts",
       "description": "Stand with your feet shoulder-width apart, knees slightly bent. Keeping your back straight, hinge forward at the hips and lower the weights (or your body) toward the ground. Push through your heels to lift the weights back up.",
+      "level": "Advanced"
+    },
+    {
+      "name": "Calf Raises",
+      "description": "Stand with your feet hip-width apart. Raise your heels off the ground and balance on the balls of your feet. Hold for a moment and then lower your heels back down to the starting position.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Step-ups",
+      "description": "Stand in front of a step or platform. Step onto the platform with your right foot, pushing through your heel. Bring your left foot up to join the right. Step back down with the right foot, followed by the left. Alternate leading with each leg.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Leg Press",
+      "description": "Sit on a leg press machine with your feet on the footplate. Push the footplate away from your body by extending your legs. Slowly bend your knees to bring the footplate back towards your body.",
+      "level": "Advanced"
+    },
+    {
+      "name": "Hamstring Curls",
+      "description": "Lie face down on a leg curl machine with your heels against the padded lever. Curl your legs upward, bringing your heels towards your glutes. Slowly lower the lever back to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Jump Squats",
+      "description": "Start in a squat position with your feet shoulder-width apart. Jump explosively, reaching for the ceiling with your arms. Land softly back into the squat position and repeat.",
       "level": "Advanced"
     }
   ],
@@ -31,6 +56,31 @@
       "name": "Dumbbell Flyes",
       "description": "Lie on a flat bench with a dumbbell in each hand. Extend your arms above your chest, palms facing each other. Lower the dumbbells out to the sides in a wide arc until you feel a stretch in your chest. Bring the dumbbells back up to the starting position.",
       "level": "Advanced"
+    },
+    {
+      "name": "Incline Push-ups",
+      "description": "Place your hands on an elevated surface, such as a bench or step, with your body in a plank position. Lower your body by bending your elbows until your chest nearly touches the surface. Push back up to the starting position.",
+      "level": "Beginner"
+    },
+    {
+      "name": "Dumbbell Bench Press",
+      "description": "Lie on a flat bench with a dumbbell in each hand, palms facing forward. Extend your arms above your chest. Lower the dumbbells to the sides of your chest, keeping your elbows at a 90-degree angle. Push the dumbbells back up to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Chest Dips",
+      "description": "Using parallel bars or a dip station, grip the handles and lift yourself up so your arms are fully extended. Lower your body by bending your elbows until your upper arms are parallel to the floor. Push yourself back up to the starting position.",
+      "level": "Advanced"
+    },
+    {
+      "name": "Cable Chest Flyes",
+      "description": "Stand in the middle of a cable machine with the handles set at shoulder height. Step forward with one foot and bring your arms forward, palms facing each other. Pull the handles outward and back until your arms are fully extended to the sides of your body. Slowly return to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Dumbbell Pullover",
+      "description": "Lie on a bench with a dumbbell held with both hands above your chest. Lower the dumbbell behind your head, keeping your arms straight. Pull the dumbbell back to the starting position by engaging your chest muscles.",
+      "level": "Advanced"
     }
   ],
   "back": [
@@ -48,8 +98,27 @@
       "name": "Deadlifts",
       "description": "Stand with your feet shoulder-width apart, knees slightly bent. Keeping your back straight, hinge forward at the hips and lower the weights (or your body) toward the ground. Push through your heels to lift the weights back up.",
       "level": "Advanced"
+    },
+    {
+      "name": "Single Arm Dumbbell Rows",
+      "description": "Place your left knee and left hand on a flat bench, keeping your back parallel to the ground. Hold a dumbbell in your right hand with your arm fully extended. Pull the dumbbell towards your chest by bending your elbow, then slowly lower it back down.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Lat Pulldowns",
+      "description": "Sit on a lat pulldown machine with your knees positioned under the pads. Grasp the bar with an overhand grip, hands wider than shoulder-width apart. Pull the bar down to your chest, squeezing your shoulder blades together. Slowly release the bar back up.",
+      "level": "Advanced"
+    },
+    {
+      "name": "Seated Cable Rows",
+      "description": "Sit on a seated cable row machine with your feet on the footplates. Grasp the handles with your arms extended. Pull the handles towards your abdomen while keeping your back straight. Slowly return the handles to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Reverse Flyes",
+      "description": "Stand with your feet shoulder-width apart and hold a dumbbell in each hand, palms facing inwards. Lean forward slightly, keeping your back straight. Raise your arms out to the sides, squeezing your shoulder blades together. Slowly lower the dumbbells back to the starting position.",
+      "level": "Advanced"
     }
-
   ],
   "arms": [
     {
@@ -66,7 +135,26 @@
       "name": "Hammer Curls",
       "description": "Stand with a dumbbell in each hand, palms facing your torso. Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level. Lower the weights back to the starting position.",
       "level": "Advanced"
+    },
+    {
+      "name": "Tricep Pushdowns",
+      "description": "Stand in front of a cable machine with a straight bar attached to the high pulley. Grasp the bar with an overhand grip, hands shoulder-width apart. Push the bar downward, extending your elbows. Slowly return to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Concentration Curls",
+      "description": "Sit on a bench with a dumbbell in one hand, resting your elbow on your thigh. Curl the dumbbell towards your shoulder while keeping your upper arm stationary. Slowly lower the weight back down and repeat with the other arm.",
+      "level": "Advanced"
+    },
+    {
+      "name": "Skull Crushers",
+      "description": "Lie on a flat bench with a barbell or EZ bar held straight above your chest. Lower the bar by bending your elbows until it is just above your forehead. Extend your arms to raise the bar back to the starting position.",
+      "level": "Intermediate"
+    },
+    {
+      "name": "Preacher Curls",
+      "description": "Sit on a preacher curl bench with your upper arms resting on the pad. Hold a barbell with an underhand grip, hands shoulder-width apart. Curl the barbell upwards, contracting your biceps. Lower the barbell back down to the starting position.",
+      "level": "Advanced"
     }
-
   ]
 }
