@@ -3,6 +3,7 @@
 
     import {login, loginWithGit, loginWithGoogle, signup} from "$lib/Firebase/firebase";
     import {onMount} from "svelte";
+    import {goto} from "$app/navigation";
 
 
     let email: any
@@ -42,10 +43,10 @@
 
 <div class="w-full h-full flex justify-center items-center">
 
-    <div class="w-[100vw] h-[100vh] overflow-y-scroll">
+    <div class="w-[100vw] h-[100vh] ">
 
 
-        <div class="w-[100%] h-[100%] bg-gray-700 flex justify-center items-center" id="Lopgin">
+        <div class="w-[100%] h-[100%] bg-gray-700 flex justify-center items-center " id="Lopgin">
             <div class="w-[40vw] h-[60vh] text-center bg-gray-900 rounded-2xl">
 
                 <ul class="p-8">
@@ -81,7 +82,9 @@
                         </button>
 
                     </li>
+
                 </ul>
+
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
     }
     function signout(){
         localStorage.setItem("userid", "")
-        goto("loginpage");
+        goto("/");
         console.log(localStorage.getItem("userid"))
     }
 </script>

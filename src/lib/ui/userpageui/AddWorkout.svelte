@@ -3,20 +3,22 @@
     import {Toast} from "@skeletonlabs/skeleton";
     import {createWorkout} from "$lib/Firebase/firebase";
     let workoutname;
-    let dataUe = [];
+    let dataUeLeg = [];
+    let dataUeChest = [];
+    let dataUeArms = [];
+    let dataUeBack = [];
+
     let newWorkout =  [];
 
     onMount( async () => {
         await fetch("src/lib/Workoutdata/Alldata.json")
             .then(response => response.json())
             .then(data => {
-                dataUe = [...data.legs.map((x) => { return x.name}),
-                    ...data.back.map((x) => { return x.name}),
-                    ...data.arms.map((x) => { return x.name}),
-                    ...data.chest.map((x) => { return x.name})]
-
+                dataUeLeg = [...data.legs.map((x) => { return x.name})]
+                dataUeChest = [...data.back.map((x) => { return x.name})]
+                dataUeArms = [...data.arms.map((x) => { return x.name})]
+                dataUeBack = [...data.chest.map((x) => { return x.name})]
             })
-        console.log(dataUe)
     })
     function addUebung(name : string){
         if(!newWorkout.includes(name)){
@@ -41,21 +43,36 @@
 
 
 
-<div class="w-[100%] h-[100%] flex justify-center items-center">
+<div class="w-[100%] h-[100%] flex justify-center items-center overflow-hidden">
 
    <div class="w-[50%] h-full flex justify-center ">
-       <ul>
+       <ul class="">
            <li class="text-center text-2xl p-4"><h1>Add your own new Workout:</h1></li>
            <li><input type="text" class="p-4" bind:value={workoutname} placeholder="Workoutname"></li>
            <li class="p-4">Choose Exercises:</li>
            <li>
-               <div class="h-[50%] w-[100%] overflow-scroll">
-                   {#each dataUe as name}
-                       <p><button class="btn mr-4" on:click={addUebung(name)}>Add / Remove</button>{name}</p>
+               <div class="h-[55vh] w-[100%] overflow-y-scroll">
+                   <p>Legs:</p>
+                   {#each dataUeLeg as name}
+                       <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
                    {/each}
+                   <p>Chest:</p>
+                   {#each dataUeChest as name}
+                       <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
+                   {/each}
+                   <p>Arms:</p>
+                   {#each dataUeArms as name}
+                       <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
+                   {/each}
+                   <p>Back:</p>
+                   {#each dataUeBack as name}
+                       <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
+                   {/each}
+                   <p>Custom:</p>
+
                </div>
            </li>
-           <li><button on:click={createnewWorkout}>Add Workout</button></li>
+           <li><button class="btn m-16" on:click={createnewWorkout}>Add Workout</button></li>
        </ul>
    </div>
     <div class="w-[50%] h-full text-center justify-center bg-[#282828]">

@@ -11,6 +11,8 @@ import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
 import AddWorkout from "$lib/ui/userpageui/AddWorkout.svelte";
 
 let username : string
+let page
+let id : any;
 
 async function getusername(id : string){
 
@@ -21,18 +23,23 @@ async function getusername(id : string){
 
 }
 
-let id : any;
+
 
 onMount(async () => {
     id = await localStorage.getItem("userid");
-
+    localStorage.setItem("userpage", (1).toString())
+    page = parseInt(localStorage.getItem("userpage"))
     console.log(id);
     await getusername(id)
     await getOwnEx()
     })
-let page = 0;
+
 function changeslot(i : number){
-    page = i;
+    localStorage.setItem("userpage", i.toString())
+    page = parseInt(localStorage.getItem("userpage"))
+    console.log(localStorage.getItem("userpage"))
+
+
 }
 
 
@@ -40,7 +47,7 @@ function changeslot(i : number){
 <div class="w-[100vw] h-[100vh] flex text-[#FF3131]">
 
     <div class="w-[10vw] h-[100vh]">
-        <Sidebar  userid={username} changepage={changeslot}></Sidebar>
+        <Sidebar  userid={username} changepage={changeslot }></Sidebar>
     </div>
 
     <div class="w-[90vw] h-[100vh] bg-[#212B36]">
