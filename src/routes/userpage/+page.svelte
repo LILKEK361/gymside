@@ -27,7 +27,7 @@ async function getusername(id : string){
 
 onMount(async () => {
     id = await localStorage.getItem("userid");
-    localStorage.setItem("userpage", (1).toString())
+
     page = parseInt(localStorage.getItem("userpage"))
     console.log(id);
     await getusername(id)

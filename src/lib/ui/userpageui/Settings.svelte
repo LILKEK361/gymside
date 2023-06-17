@@ -12,6 +12,7 @@
     }
     function signout(){
         localStorage.setItem("userid", "")
+        localStorage.setItem("userpage", (1).toString())
         goto("/");
         console.log(localStorage.getItem("userid"))
     }
