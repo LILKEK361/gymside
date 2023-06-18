@@ -161,6 +161,22 @@ export function deleteEx(name: string) {
     })
 }
 
+async function userexist(userid : string){
+    const startRef = ref(db, "/user/")
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+
+
+    await onValue(startRef, (snapshot) => {
+         console.log(snapshot.val())
+
+    })
+
+
+
+    return false
+}
+
 export async function loginWithGoogle() {
 
    await signInWithPopup(authFb, googleAuthProvider)
@@ -169,8 +185,8 @@ export async function loginWithGoogle() {
             // The signed-in user info.
             const user = result.user;
             localStorage.setItem("userid", user.uid)
-            console.log(localStorage.getItem("userid"))
-            createuser("new member")
+            if( await userexist(user.uid) === true)
+
             goto("userpage")
             return true;
 
