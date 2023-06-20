@@ -181,7 +181,6 @@ export async function loginWithGoogle() {
 
    await signInWithPopup(authFb, googleAuthProvider)
         .then((result) => {
-
             // The signed-in user info.
             const user = result.user;
             localStorage.setItem("userid", user.uid)
