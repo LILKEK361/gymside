@@ -161,13 +161,13 @@ export function deleteEx(name: string) {
     })
 }
 
-async function userexist(userid : string){
+ function userexist(userid : string){
     const startRef = ref(db, "/user/")
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
 
-    await onValue(startRef, (snapshot) => {
+     onValue(startRef, (snapshot) => {
          console.log(snapshot.val())
 
     })
@@ -184,7 +184,10 @@ export async function loginWithGoogle() {
             // The signed-in user info.
             const user = result.user;
             localStorage.setItem("userid", user.uid)
-            if( await userexist(user.uid) === true)
+            const userexistvar =  userexist(user.uid)
+            if(userexistvar){
+                createuser("new Member")
+            }
 
             goto("userpage")
             return true;

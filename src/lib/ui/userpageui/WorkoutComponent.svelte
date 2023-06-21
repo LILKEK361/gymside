@@ -1,9 +1,12 @@
 <script lang="ts">
 
     import {onMount} from "svelte";
+    import {getWorkouts} from "$lib/Firebase/firebase";
 
-    let names = ["sus"];
-    let workouts;
+    let names = [];
+    onMount(async () => {
+        console.log(await getWorkouts());
+    })
 
 
 </script>
