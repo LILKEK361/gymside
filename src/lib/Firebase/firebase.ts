@@ -227,5 +227,9 @@ export function createWorkout(name : string, uebungen : any){
 
 export async function getWorkouts(){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")
-    await onValue(startref, ())
+    let workouts = {}
+    await onValue(startref, (snapshot) => {
+        workouts = snapshot.val()
+    })
+    return workouts;
 }
