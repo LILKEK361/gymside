@@ -5,7 +5,10 @@
 
     let names = [];
     onMount(async () => {
-        console.log(await getWorkouts());
+        let data = await getWorkouts();
+
+        names = data.names;
+        console.log(names)
     })
 
 

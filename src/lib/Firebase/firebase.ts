@@ -110,13 +110,13 @@ export async function createuser(name: string) {
 
 }
 
-export async function changeusername(newname: string) {
-    const startref = ref(db, "user/" + await localStorage.getItem("userid") + "/name/")
-    await set(startref, newname)
+export  function changeusername(newname: string) {
+    const startref = ref(db, "user/" +  localStorage.getItem("userid") + "/name/")
+     set(startref, newname)
 }
 
-export async function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string) {
-    const startref = ref(db, "/user/" + await localStorage.getItem("userid") + "/ownEx/" + name)
+export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string) {
+    const startref = ref(db, "/user/" +  localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, {
         name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup
     })
@@ -161,14 +161,16 @@ export function deleteEx(name: string) {
     })
 }
 
- function userexist(userid : string){
+async function  userexist(userid : string){
     const startRef = ref(db, "/user/")
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
 
-     onValue(startRef, (snapshot) => {
-         console.log(snapshot.val())
+     await onValue(startRef, (snapshot) => {
+         snapshot.forEach((child) => {if (child.key == userid) {
+             return true;
+         }})
 
     })
 
@@ -185,7 +187,8 @@ export async function loginWithGoogle() {
             const user = result.user;
             localStorage.setItem("userid", user.uid)
             const userexistvar =  userexist(user.uid)
-            if(userexistvar){
+            console.log(userexistvar)
+            if(!userexistvar){
                 createuser("new Member")
             }
 
@@ -231,8 +234,10 @@ export function createWorkout(name : string, uebungen : any){
 export async function getWorkouts(){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")
     let workouts = {}
+    let names : Array<string> = []
     await onValue(startref, (snapshot) => {
         workouts = snapshot.val()
+         snapshot.forEach((child) => {names = [...names, child.key]})
     })
-    return workouts;
+    return {names : names, workouts : workouts};
 }
