@@ -209,7 +209,7 @@ export  async function loginWithGit(){
         .then((result) => {
 
             // The signed-in user info.
-            const user = result.user;
+            const user = result.user
             localStorage.setItem("userid", user.uid)
             console.log(localStorage.getItem("userid"))
             createuser("new member")
