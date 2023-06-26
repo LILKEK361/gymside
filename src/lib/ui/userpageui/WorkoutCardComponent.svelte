@@ -8,5 +8,5 @@
 </script>
 
 <div>
-    {uebunegen,img,time,name}
+    {uebunegen,img,time,name }
 </div>
