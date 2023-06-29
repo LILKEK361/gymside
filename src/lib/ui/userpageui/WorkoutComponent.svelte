@@ -15,7 +15,7 @@
 
 </script>
 
-<div class="w-[100%] h-[100%] flex justify-center ">
+<div class="w-[100%] h-[100%] flex justify-center  overflow-y-scroll">
 
     <ul>
         {#each names as name}
