@@ -115,10 +115,10 @@ export  function changeusername(newname: string) {
      set(startref, newname)
 }
 
-export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string) {
+export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string, time : string) {
     const startref = ref(db, "/user/" +  localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, {
-        name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup
+        name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup, time : time
     })
 }
 

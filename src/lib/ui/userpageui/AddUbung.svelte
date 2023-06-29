@@ -5,14 +5,14 @@
     let level
     let way
     let muscel
-
+    let time
     function check() {
         console.log(name.value)
-        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "") {
+        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" || time.value === "") {
 
             alert("Pls fill every input")
         } else {
-            addnew(name.value, level.value, way.value, muscel.value)
+            addnew(name.value, level.value, way.value, muscel.value, time.value)
             level.value = ""
             name.value = ""
             way.value = ""
@@ -46,6 +46,9 @@
             <li><h1 class="text-center font-bold text-2xl">Add a new exercise</h1></li>
             <li>
                <input bind:this={name} class="my-10" placeholder="Name" type="text">
+            </li>
+            <li>
+                <input bind:this={time} class="my-10" placeholder="Time" type="text">
             </li>
             <li>
                 <input bind:this={level} class="my-10" placeholder="Level" type="text">
