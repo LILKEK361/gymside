@@ -236,11 +236,16 @@ export function createWorkout(name : string, uebungen : any, time : string){
 
 export async function getWorkouts(){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")
-    let workouts = {}
+    let workoutsdata = {}
     let names : Array<string> = []
+    let times : Array<string> = []
     await onValue(startref, (snapshot) => {
-        workouts = snapshot.val()
-         snapshot.forEach((child) => {names = [...names, child.key]})
+        workoutsdata = snapshot.val()
+        snapshot.forEach((child) => {
+            times = [...times, child.time]
+            child.forEach((name) => {console.log(child.val().uebungen)})
+
+        })
     })
-    return {names : names, workouts : workouts};
+   console.log( {names : names, workouts : workoutsdata, times : times});
 }
