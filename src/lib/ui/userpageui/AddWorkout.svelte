@@ -2,6 +2,7 @@
     import {onMount} from "svelte";
     import {Toast} from "@skeletonlabs/skeleton";
     import {createWorkout} from "$lib/Firebase/firebase";
+    let time : any
     let workoutname;
     let dataUeLeg = [];
     let dataUeChest = [];
@@ -29,7 +30,7 @@
     }
     function createnewWorkout(){
         if(workoutname) {
-            createWorkout(workoutname, newWorkout)
+            createWorkout(workoutname, newWorkout, time.value)
             alert("Your Workout was added <3")
             newWorkout = []
             workoutname = ""
@@ -55,6 +56,9 @@
        <ul class="">
            <li class="text-center text-2xl p-4"><h1>Add your own new Workout:</h1></li>
            <li><input type="text" class="p-4" bind:value={workoutname} placeholder="Workoutname"></li>
+           <li>
+               <input bind:this={time} class="my-10" placeholder="Time" type="text">
+           </li>
            <li class="p-4">Choose Exercises:</li>
            <li>
                <div class="h-[55vh] w-[100%] overflow-y-scroll">

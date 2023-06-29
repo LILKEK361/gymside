@@ -115,10 +115,10 @@ export  function changeusername(newname: string) {
      set(startref, newname)
 }
 
-export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string, time : string) {
+export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string, ) {
     const startref = ref(db, "/user/" +  localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, {
-        name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup, time : time
+        name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup
     })
 }
 
@@ -226,10 +226,11 @@ export  async function loginWithGit(){
         });
 }
 
-export function createWorkout(name : string, uebungen : any){
+export function createWorkout(name : string, uebungen : any, time : string){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/" + name)
-    set(startref,
-        uebungen
+    set(startref,{
+        uebungen : uebungen,
+        time : time}
     )
 }
 
