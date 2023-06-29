@@ -210,6 +210,7 @@ export  async function loginWithGit(){
 
             // The signed-in user info.
             const user = result.user
+
             
             localStorage.setItem("userid", user.uid)
             console.log(localStorage.getItem("userid"))
