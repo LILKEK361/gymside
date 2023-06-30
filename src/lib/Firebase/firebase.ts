@@ -249,3 +249,10 @@ export async function getWorkouts(){
     })
    return  {names : names, workouts : workoutsdata};
 }
+
+export function deleteWorkout(name : string){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/" + name)
+    set(startref, null).catch((error) => {
+        const errorcode = error.code
+    })
+}

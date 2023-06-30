@@ -7,12 +7,13 @@
     let names = [];
     let data
     onMount(async () => {
-        data = await getWorkouts();
-
-        names = data.names;
+        await getData
 
     })
-
+    export function getData() {
+        data =  getWorkouts();
+        names = data.names;
+    }
 
 </script>
 
@@ -20,7 +21,7 @@
 
     <ul>
         {#each names as name}
-           <li> <WorkoutCardComponent name={name} time={data.workouts[name].time}  uebunegen={data.workouts[name].uebungen}/></li>
+           <li> <WorkoutCardComponent name={name} time={data.workouts[name].time}   uebunegen={data.workouts[name].uebungen}/></li>
         {/each}
     </ul>
 
