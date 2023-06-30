@@ -5,8 +5,9 @@
     import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
 
     let names = [];
+    let data
     onMount(async () => {
-        let data = await getWorkouts();
+        data = await getWorkouts();
 
         names = data.names;
 
@@ -19,7 +20,7 @@
 
     <ul>
         {#each names as name}
-           <li> <WorkoutCardComponent name={name} time="s" /></li>
+           <li> <WorkoutCardComponent name={name} time={data.workouts[name].time}  uebunegen={data.workouts[name].uebungen}/></li>
         {/each}
     </ul>
 

@@ -29,11 +29,12 @@
         }
     }
     function createnewWorkout(){
-        if(workoutname) {
-            createWorkout(workoutname, newWorkout, time.value)
+        if(workoutname && time) {
+            createWorkout(workoutname, newWorkout, time)
             alert("Your Workout was added <3")
             newWorkout = []
             workoutname = ""
+            time = ""
         }else{
             alert("pls choose a workout name")
         }
@@ -57,7 +58,7 @@
            <li class="text-center text-2xl p-4"><h1>Add your own new Workout:</h1></li>
            <li><input type="text" class="p-4" bind:value={workoutname} placeholder="Workoutname"></li>
            <li>
-               <input bind:this={time} class="my-10" placeholder="Time" type="text">
+               <input bind:value={time} class="my-10" placeholder="Time" type="text">
            </li>
            <li class="p-4">Choose Exercises:</li>
            <li>
