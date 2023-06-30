@@ -7,21 +7,28 @@
     let names = [];
     let data
     onMount(async () => {
-        await getData
+        data = await getWorkouts();
+        names = data.names;
 
     })
-    export function getData() {
-        data =  getWorkouts();
+
+    export async function getData() {
+        data = await getWorkouts();
         names = data.names;
+
     }
 
 </script>
 
 <div class="w-[100%] h-[100%] flex justify-center  overflow-y-scroll">
 
-    <ul>
+    <ul >
         {#each names as name}
-           <li> <WorkoutCardComponent name={name} time={data.workouts[name].time}   uebunegen={data.workouts[name].uebungen}/></li>
+            <li class="m-5">
+                <WorkoutCardComponent name={name} time={data.workouts[name].time}
+                                      getdata = {getData}
+                                      uebunegen={data.workouts[name].uebungen}/>
+            </li>
         {/each}
     </ul>
 

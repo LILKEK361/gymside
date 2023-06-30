@@ -91,9 +91,18 @@
         <ul>
             <li>
                 {#if workoutname}
-                    <p>{"Workout:" + workoutname}</p>
+                    <p>{"Workout: " + workoutname}</p>
                     {:else}
                     <p>Workout: New Workout</p>
+                {/if}
+            </li>
+            <li>
+                {#if time}
+                    <p>{"Time: " + time}</p>
+                {:else}
+                    <p>
+                        Time: 00:00:00
+                    </p>
                 {/if}
             </li>
             <li>
