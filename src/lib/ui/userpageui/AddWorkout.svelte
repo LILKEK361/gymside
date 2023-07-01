@@ -18,7 +18,7 @@
                 dataUeLeg = [...data.legs.map((x) => { return x.name})]
                 dataUeChest = [...data.back.map((x) => { return x.name})]
                 dataUeArms = [...data.arms.map((x) => { return x.name})]
-                dataUeBack = [...data.chest.map((x) => { return x.name})]
+                dataUeBack = [...data.chest.map((x) => { return x.name}) ]
             })
     })
     function addUebung(name : string){
