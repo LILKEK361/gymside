@@ -1,15 +1,17 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {Toast} from "@skeletonlabs/skeleton";
-    import {createWorkout} from "$lib/Firebase/firebase";
+    import {createWorkout, getOwnEx} from "$lib/Firebase/firebase";
     let time : any
     let workoutname;
     let dataUeLeg = [];
     let dataUeChest = [];
     let dataUeArms = [];
     let dataUeBack = [];
-
+    let cusotmnames = []
     let newWorkout =  [];
+
+
 
     onMount( async () => {
         await fetch("src/lib/Workoutdata/Alldata.json")
@@ -20,6 +22,9 @@
                 dataUeArms = [...data.arms.map((x) => { return x.name})]
                 dataUeBack = [...data.chest.map((x) => { return x.name}) ]
             })
+
+        await getOwnEx()
+        cusotmnames   = await localStorage.getItem("namesEx")?.split(",")
     })
     function addUebung(name : string){
         if(!newWorkout.includes(name)){
@@ -80,7 +85,9 @@
                        <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
                    {/each}
                    <p>Custom:</p>
-
+                   {#each cusotmnames as name}
+                       <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
+                   {/each}
                </div>
            </li>
            <li><button class="btn m-16" on:click={createnewWorkout}>Add Workout</button></li>

@@ -250,9 +250,19 @@ export async function getWorkouts(){
    return  {names : names, workouts : workoutsdata};
 }
 
+
+
 export function deleteWorkout(name : string){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/" + name)
     set(startref, null).catch((error) => {
         const errorcode = error.code
+    })
+}
+
+
+export async function getDatabyName(Name : string){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + Name)
+    onValue(startref, (snapshot) => {
+        console.log(snapshot.val())
     })
 }

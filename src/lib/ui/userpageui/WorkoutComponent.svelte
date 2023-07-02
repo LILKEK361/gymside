@@ -1,14 +1,17 @@
 <script lang="ts">
 
     import {onMount} from "svelte";
-    import {getWorkouts} from "$lib/Firebase/firebase";
+    import {getWorkouts, } from "$lib/Firebase/firebase";
     import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
 
     let names = [];
     let data
+
     onMount(async () => {
         data = await getWorkouts();
         names = data.names;
+        localStorage.setItem("Workoutdata", JSON.stringify(data))
+
 
     })
 
