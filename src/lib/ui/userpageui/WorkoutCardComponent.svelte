@@ -11,63 +11,24 @@
 
     export let getdata : any
 
-    let alldata : any
-    let allnames : any
+    let data : any
 
-    onMount( async () => {
-
-        await fetch("src/lib/Workoutdata/Alldata.json")
-            .then(response => response.json()
-
-            )
-            .then((data) =>
-
-        {
-
-             allnames = { legs : data.legs.map((item) =>{ return item.name}),
-                back : data.back.map((item) =>{ return item.name}),
-                arms : data.back.map((item) =>{ return item.name}) ,
-                chest : data.chest.map((item) =>{ return item.name})}
-
-            alldata = data
-            console.log(alldata)
-        })
-
+    onMount(async () => {
+      data  = await localStorage.getItem("AllDataPre")
     })
 
-    function checkName(name : string){
-        if(allnames.legs.includes(name)){
-            console.log(alldata)
-            return alldata.legs.map((item) => {if (item.name === name){
-                console.log(item.description)
-                return item.description
-            }})
-        }else if(allnames.back.includes(name)){
-            return alldata.back.map((item) => {if (item.name === name){
-                console.log(item.description)
-                return item.description
-            }})
-        }else if(allnames.chest.includes(name)){
-            return alldata.chest.map((item) => {if (item.name === name){
-                console.log(item.description)
-                return item.description
-            }})
-        }else if(allnames.arms.includes(name)){
-            return alldata.arms.map((item) => {if (item.name === name){
 
-                console.log(item.description)
-                return item.description
-            }})
-        }
-        return "Custom Description"
 
-    }
+
+
+
+
 
 
 
 </script>
 
-{#if alldata}
+
     <div class="card">
         <div class="front text-3xl text-center">{"Workout: " + name}</div>
         <div class="card__content">
@@ -75,17 +36,16 @@
                 <div class="card__title">{name}</div>
                 <button on:click={() => {deleteWorkout(name);getdata()}} class="btn btn-danger">Delete</button>
             </div>
+            <p>{time}</p>
             <ul class="card__description">
                 {#each uebunegen as uebuneg}
-                    <ExerciseText dataForEx={checkName(uebuneg)} name={uebuneg}></ExerciseText>
+                    <ExerciseText dataForEx={data.uebuneg} name={uebuneg}></ExerciseText>
 
                 {/each}
             </ul>
         </div>
     </div>
-    {:else }
-    <p>Loading</p>
-{/if}
+
 
 <style>
     .card {

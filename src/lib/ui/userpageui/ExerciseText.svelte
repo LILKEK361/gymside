@@ -3,7 +3,7 @@
     import {onMount} from "svelte";
     import * as trace_events from "trace_events";
 
-    export let dataForEx : any
+    export let dataForEx : string
 
     export let name : any;
 
