@@ -4,6 +4,8 @@
     import ExerciseText from "$lib/ui/userpageui/ExerciseText.svelte";
     import {onMount} from "svelte";
 
+
+
     export let name: string
     export let uebunegen: any
     //export let img : any
@@ -11,21 +13,19 @@
 
     export let getdata : any
 
-    let data : any
 
-    onMount(async () => {
-      data  = await localStorage.getItem("AllDataPre")
-    })
+    export async function getDes(nameUe : string){
+        let data : any = localStorage.getItem("AllDataPre")
+        data = await  JSON.parse(data)
 
+        console.log(data)
+        data.forEach((element : any) => {element})
 
-
-
-
-
-
+        return "des"
+    }
 
 
-
+    //dataForEx={data[uebuneg]}
 </script>
 
 
@@ -39,7 +39,7 @@
             <p>{time}</p>
             <ul class="card__description">
                 {#each uebunegen as uebuneg}
-                    <ExerciseText dataForEx={data.uebuneg} name={uebuneg}></ExerciseText>
+                    <ExerciseText dataForEx={getDes(uebuneg)}  name={uebuneg}></ExerciseText>
 
                 {/each}
             </ul>

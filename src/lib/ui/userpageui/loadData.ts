@@ -4,18 +4,30 @@ import {json} from "@sveltejs/kit";
 
 export async function setAllData(){
 
-        let all : any
+        let all : object
         fetch("src/lib/Workoutdata/Alldata.json")
             .then(response => response.json()
 
             )
             .then( async (data) => {
-                all = [
-                    ...data.legs.map((element : any) => {return {[element.name]: element.description}}),
-                    ...data.back.map((element : any) => {return {[element.name]: element.description}}),
-                    ...data.chest.map((element : any) => {return {[element.name]: element.description}}),
-                    ...data.arms.map((element : any) => {return {[element.name]: element.description}})
-                ]
+
+
+
+                    data.legs.map((element: object) => {
+                        return {name: element.name, description: element.description}
+                        console.log()
+                    })
+                    data.back.map((element: any) => {
+                        return {name: element.name, description: element.description}
+                    })
+                    data.chest.map((element: any) => {
+                        return {name: element.name, description: element.description}
+                    })
+                    data.arms.map((element: any) => {
+                        return {name: element.name, description: element.description}
+                    })
+             
+                console.log(all)
                 localStorage.setItem("AllDataPre", JSON.stringify(all));
 
             })
@@ -29,3 +41,6 @@ function lableData(data : any){
     JSON.stringify(data)
 
 }
+
+
+

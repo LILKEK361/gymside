@@ -14,7 +14,7 @@
         data = await getWorkouts();
         names = data.names;
 
-        setAllData()
+
 
     })
 
@@ -36,7 +36,7 @@
                     <WorkoutCardComponent name={name} time={data.workouts[name].time}
                                           getdata = {getData}
                                           uebunegen={data.workouts[name].uebungen}
-                                          />                    />
+                                          />
                 </li>
             {/each}
         </ul>
