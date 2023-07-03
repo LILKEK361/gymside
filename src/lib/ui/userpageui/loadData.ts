@@ -1,10 +1,11 @@
 import {getWorkouts} from "$lib/Firebase/firebase";
 import {json} from "@sveltejs/kit";
+import {element} from "svelte/internal";
 
 
 export async function setAllData(){
+         const all : Map<string, string> = new Map<string, string>()
 
-        let all : object
         fetch("src/lib/Workoutdata/Alldata.json")
             .then(response => response.json()
 
@@ -12,23 +13,23 @@ export async function setAllData(){
             .then( async (data) => {
 
 
+               await data.legs.map((element : any) => {
+                    all.set(element.name, element.description)
+                })
+                await data.back.map((element : any) => {
+                    all.set(element.name, element.description)
+                })
+                await data.arms.map((element : any) => {
+                    all.set(element.name, element.description)
+                })
+                await data.chest.map((element : any) => {
+                    all.set(element.name, element.description)
+                })
 
-                    data.legs.map((element: object) => {
-                        return {name: element.name, description: element.description}
-                        console.log()
-                    })
-                    data.back.map((element: any) => {
-                        return {name: element.name, description: element.description}
-                    })
-                    data.chest.map((element: any) => {
-                        return {name: element.name, description: element.description}
-                    })
-                    data.arms.map((element: any) => {
-                        return {name: element.name, description: element.description}
-                    })
              
                 console.log(all)
-                localStorage.setItem("AllDataPre", JSON.stringify(all));
+                const clone  = Object.fromEntries(all)
+                localStorage.setItem("AllDataPre", JSON.stringify(clone));
 
             })
 

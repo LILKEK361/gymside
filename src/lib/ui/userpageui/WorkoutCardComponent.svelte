@@ -14,12 +14,14 @@
     export let getdata : any
 
 
-    export async function getDes(nameUe : string){
-        let data : any = localStorage.getItem("AllDataPre")
-        data = await  JSON.parse(data)
+    export  function getDes(nameUe : string){
+        let data : any =  localStorage.getItem("AllDataPre")
+        data =  JSON.parse(data)
 
-        console.log(data)
-        data.forEach((element : any) => {element})
+
+        if(Object.keys(data).includes(nameUe)){
+            return data[nameUe]
+        }
 
         return "des"
     }
@@ -37,7 +39,7 @@
                 <button on:click={() => {deleteWorkout(name);getdata()}} class="btn btn-danger">Delete</button>
             </div>
             <p>{time}</p>
-            <ul class="card__description">
+            <ul class="card__description overflow-y-scroll">
                 {#each uebunegen as uebuneg}
                     <ExerciseText dataForEx={getDes(uebuneg)}  name={uebuneg}></ExerciseText>
 
@@ -106,6 +108,7 @@
         font-size: 14px;
         color: #777;
         line-height: 1.4;
+        overflow-y: scroll ;
     }
 
 </style>
