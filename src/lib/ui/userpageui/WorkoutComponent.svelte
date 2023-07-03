@@ -5,11 +5,14 @@
     import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
     import {setAllData} from "$lib/ui/userpageui/loadData";
     import ExerciseCard from "$lib/ui/userpageui/ExerciseCard.svelte";
+
     let names = [];
     let data : any
-    let alldata : object
-    let allnames : object
-    let description
+
+
+    let exTitle : string
+    let exDes : string
+    let exLevel
 
     onMount(async () => {
         data = await getWorkouts();
@@ -20,6 +23,13 @@
 
     })
 
+    export const setContent = (title : string, des : string, level : string) => {
+
+        exTitle = title
+        exDes = des
+        exLevel = level
+
+    }
 
     export async function getData() {
         data = await getWorkouts();
@@ -38,14 +48,15 @@
                     <WorkoutCardComponent name={name} time={data.workouts[name].time}
                                           getdata = {getData}
                                           uebunegen={data.workouts[name].uebungen}
+                                          setContent={setContent}
                                           />
                 </li>
             {/each}
         </ul>
         </div>
         <div class="h-[100%] w-[50%]">
-            <ExerciseCard />
-            //Live preview of an exercise
+            <ExerciseCard title={exTitle} level={exLevel} des={exDes} />
+
         </div>
     </div>
     {:else }

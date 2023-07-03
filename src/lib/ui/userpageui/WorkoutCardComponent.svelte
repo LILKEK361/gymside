@@ -13,6 +13,7 @@
 
     export let getdata : any
 
+    export let setContent : any
 
     export  function getDes(nameUe : string){
         let data : any =  localStorage.getItem("AllDataPre")
@@ -41,7 +42,10 @@
             <p>{time}</p>
             <ul class="card__description overflow-y-scroll">
                 {#each uebunegen as uebuneg}
-                    <ExerciseText dataForEx={getDes(uebuneg)}  name={uebuneg}></ExerciseText>
+                    <ExerciseText
+                            setContent={setContent}
+                            dataForEx={getDes(uebuneg)}
+                            name={uebuneg} />
 
                 {/each}
             </ul>
