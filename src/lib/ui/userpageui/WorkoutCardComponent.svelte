@@ -26,7 +26,7 @@
 
              allnames = { legs : data.legs.map((item) =>{ return item.name}),
                 back : data.back.map((item) =>{ return item.name}),
-                arm : data.back.map((item) =>{ return item.name}) ,
+                arms : data.back.map((item) =>{ return item.name}) ,
                 chest : data.chest.map((item) =>{ return item.name})}
 
             alldata = data
@@ -37,28 +37,29 @@
 
     function checkName(name : string){
         if(allnames.legs.includes(name)){
+            console.log(alldata)
             return alldata.legs.map((item) => {if (item.name === name){
                 console.log(item.description)
                 return item.description
             }})
-        }else if(alldata.back.includes(name)){
+        }else if(allnames.back.includes(name)){
             return alldata.back.map((item) => {if (item.name === name){
                 console.log(item.description)
                 return item.description
             }})
-        }else if(alldata.chest.includes(name)){
+        }else if(allnames.chest.includes(name)){
             return alldata.chest.map((item) => {if (item.name === name){
                 console.log(item.description)
                 return item.description
             }})
-        }else if(alldata.arms.includes(name)){
+        }else if(allnames.arms.includes(name)){
             return alldata.arms.map((item) => {if (item.name === name){
 
                 console.log(item.description)
                 return item.description
             }})
         }
-        return "Sus"
+        return "Custom Description"
 
     }
 
