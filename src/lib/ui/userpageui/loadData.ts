@@ -4,7 +4,8 @@ import {element} from "svelte/internal";
 
 
 export async function setAllData(){
-         const all : Map<string, string> = new Map<string, string>()
+         const allDes : Map<string, string> = new Map<string, string>()
+        const allLevels : Map<string, string> = new Map<string, string>()
 
         fetch("src/lib/Workoutdata/Alldata.json")
             .then(response => response.json()
@@ -14,22 +15,37 @@ export async function setAllData(){
 
 
                await data.legs.map((element : any) => {
-                    all.set(element.name, element.description)
+                    allDes.set(element.name, element.description)
                 })
                 await data.back.map((element : any) => {
-                    all.set(element.name, element.description)
+                    allDes.set(element.name, element.description)
                 })
                 await data.arms.map((element : any) => {
-                    all.set(element.name, element.description)
+                    allDes.set(element.name, element.description)
                 })
                 await data.chest.map((element : any) => {
-                    all.set(element.name, element.description)
+                    allDes.set(element.name, element.description)
+                })
+
+                await data.legs.map((element : any) => {
+                    allLevels.set(element.name, element.level)
+                })
+                await data.back.map((element : any) => {
+                    allLevels.set(element.name, element.level)
+                })
+                await data.arms.map((element : any) => {
+                    allLevels.set(element.name, element.level)
+                })
+                await data.chest.map((element : any) => {
+                    allLevels.set(element.name, element.level)
                 })
 
              
-                console.log(all)
-                const clone  = Object.fromEntries(all)
-                localStorage.setItem("AllDataPre", JSON.stringify(clone));
+                console.log(allDes)
+                const cloneDes  = Object.fromEntries(allDes)
+                localStorage.setItem("AllDataPre", JSON.stringify(cloneDes));
+               const cloneLevels  = Object.fromEntries(allLevels)
+                localStorage.setItem("AllDataLevel", JSON.stringify(cloneLevels));
 
             })
 

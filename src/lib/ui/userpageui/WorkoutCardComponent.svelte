@@ -26,6 +26,17 @@
 
         return "des"
     }
+    export  function getLevel(nameUe : string){
+        let data : any =  localStorage.getItem("AllDataLevel")
+        data =  JSON.parse(data)
+
+
+        if(Object.keys(data).includes(nameUe)){
+            return data[nameUe]
+        }
+
+        return "Not Ranked"
+    }
 
 
     //dataForEx={data[uebuneg]}
@@ -45,6 +56,7 @@
                     <ExerciseText
                             setContent={setContent}
                             dataForEx={getDes(uebuneg)}
+                            level={getLevel(uebuneg)}
                             name={uebuneg} />
 
                 {/each}
