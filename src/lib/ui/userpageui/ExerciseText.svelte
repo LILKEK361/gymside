@@ -1,7 +1,8 @@
 <script lang="ts">
 
     import {onMount} from "svelte";
-    import * as trace_events from "trace_events";
+
+
 
     export let setContent : any
 
@@ -14,11 +15,15 @@
 
 
 </script>
-<li  ><div
+
+<li  >
+        <div
         class="text-xl flex"
         on:mouseenter={setContent(name, dataForEx)}
         on:mouseleave={() => {""}}
-        on:click={() => {""}}
+
         >{name}
+
+        </div>
 
 </li>
