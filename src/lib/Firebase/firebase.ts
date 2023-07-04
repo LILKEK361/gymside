@@ -259,10 +259,12 @@ export function deleteWorkout(name : string){
     })
 }
 
-
-export async function getDatabyName(Name : string){
-    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + Name)
-    onValue(startref, (snapshot) => {
-        console.log(snapshot.val())
+export  function customExFB(){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
+    let customEX = {}
+    onValue(startref,  async (snapshot) => {
+       customEX = snapshot.val()
     })
+    return customEX
+
 }

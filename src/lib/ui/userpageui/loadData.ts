@@ -1,13 +1,15 @@
-import {getWorkouts} from "$lib/Firebase/firebase";
+import {customExFB, getOwnEx, getWorkouts} from "$lib/Firebase/firebase";
 import {json} from "@sveltejs/kit";
 import {element} from "svelte/internal";
 
 
 export async function setAllData(){
-         const allDes : Map<string, string> = new Map<string, string>()
-        const allLevels : Map<string, string> = new Map<string, string>()
+    const allDes : Map<string, string> = new Map<string, string>()
+    const allLevels : Map<string, string> = new Map<string, string>()
+    const customEx : object = customExFB()
 
-        fetch("src/lib/Workoutdata/Alldata.json")
+
+    fetch("src/lib/Workoutdata/Alldata.json")
             .then(response => response.json()
 
             )
@@ -40,16 +42,19 @@ export async function setAllData(){
                     allLevels.set(element.name, element.level)
                 })
 
+                Object.keys(customEx).map((element : any) => {
+                    allDes.set(customEx[element].name, customEx[element].description)
+                    allLevels.set(customEx[element].name, customEx[element].level)
+
+                })
+
              
-                console.log(allDes)
-                const cloneDes  = Object.fromEntries(allDes)
-                localStorage.setItem("AllDataPre", JSON.stringify(cloneDes));
-               const cloneLevels  = Object.fromEntries(allLevels)
-                localStorage.setItem("AllDataLevel", JSON.stringify(cloneLevels));
+                })
 
-            })
-
-
+    const cloneDes  = Object.fromEntries(allDes)
+    localStorage.setItem("AllDataPre", JSON.stringify(cloneDes));
+    const cloneLevels  = Object.fromEntries(allLevels)
+    localStorage.setItem("AllDataLevel", JSON.stringify(cloneLevels));
 
 }
 
