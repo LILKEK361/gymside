@@ -21,7 +21,8 @@
 <li  >
         <div
         class="text-xl flex"
-        on:mouseenter={setContent(name, dataForEx, level)}
+        on:mouseenter={setContent(name, dataForEx, level)
+        }
         on:mouseleave={() => {""}}
 
         >{name}
