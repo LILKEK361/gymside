@@ -23,7 +23,7 @@
         class="text-xl flex"
         on:mouseenter={setContent(name, dataForEx, level)
         }
-        on:mouseleave={() => {""}}
+        on:mouseleave={() => {" "}}
 
         >{name}
 
