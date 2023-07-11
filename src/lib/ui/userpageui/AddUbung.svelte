@@ -1,5 +1,7 @@
 <script lang="ts">
     import {addnew} from "$lib/Firebase/firebase";
+    import {notifications} from '../Toast/notification'
+    import Toast from '../Toast/Toast.svelte'
 
     let name
     let level
@@ -8,9 +10,9 @@
 
     function check() {
         console.log(name.value)
-        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" || time.value === "") {
+        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" || time === "") {
 
-            alert("Pls fill every input")
+            notifications.warning("Pls fill every input", 4000)
         } else {
             addnew(name.value, level.value, way.value, muscel.value)
             level.value = ""
@@ -67,5 +69,5 @@
 
 
     </div>
-
+    <Toast />
 </div>

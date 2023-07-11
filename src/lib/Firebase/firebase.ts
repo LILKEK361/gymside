@@ -13,7 +13,7 @@ import {goto} from "$app/navigation";
 import 'firebase/firestore'
 
 import 'firebase/auth';
-
+import {notifications} from "$lib/ui/Toast/notification";
 
 
 
@@ -75,10 +75,9 @@ export async function signup(email: string, password: string) {
 
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
+            const errorcode = error.code
+            notifications.warning("Error: " + errorcode);
+        })
     return true;
 }
 
@@ -96,9 +95,9 @@ export async function login(email: string, password: string) {
             // ...
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+            const errorcode = error.code
+            notifications.warning("Error: " + errorcode);
+        })
     return true;
 
 }
@@ -112,13 +111,19 @@ export async function createuser(name: string) {
 
 export  function changeusername(newname: string) {
     const startref = ref(db, "user/" +  localStorage.getItem("userid") + "/name/")
-     set(startref, newname)
+     set(startref, newname).catch((error) => {
+         const errorcode = error.code
+         notifications.warning("Error: " + errorcode);
+     })
 }
 
 export  function addnew(name: string, level: string, ausfuehrung: string, muscelgroup: string, ) {
     const startref = ref(db, "/user/" +  localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, {
         name: name, level: level, way: ausfuehrung, muscelgroup: muscelgroup
+    }).catch((error) => {
+        const errorcode = error.code
+        notifications.warning("Error: " + errorcode);
     })
 }
 
@@ -158,6 +163,9 @@ export function deleteEx(name: string) {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, null).catch((error) => {
         const errorcode = error.code
+    }).catch((error) => {
+        const errorcode = error.code
+        notifications.warning("Error: " + errorcode);
     })
 }
 
@@ -196,11 +204,9 @@ export async function loginWithGoogle() {
             return true;
 
         }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-    });
+           const errorcode = error.code
+           notifications.warning("Error: " + errorcode);
+       });
 
 }
 
@@ -219,10 +225,8 @@ export  async function loginWithGit(){
             return true;
 
         }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
+            const errorcode = error.code
+            notifications.warning("Error: " + errorcode);
         });
 }
 
@@ -231,7 +235,10 @@ export function createWorkout(name : string, uebungen : any, time : string){
     set(startref,{
         uebungen : uebungen,
         time : time}
-    )
+    ).catch((error) => {
+        const errorcode = error.code
+        notifications.warning("Error: " + errorcode);
+    })
 }
 
 export async function getWorkouts(){
@@ -256,6 +263,7 @@ export function deleteWorkout(name : string){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/" + name)
     set(startref, null).catch((error) => {
         const errorcode = error.code
+        notifications.warning("Error: " + errorcode);
     })
 }
 

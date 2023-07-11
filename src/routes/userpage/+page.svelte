@@ -9,6 +9,7 @@ import AddUbung from "$lib/ui/userpageui/AddUbung.svelte";
 import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
 import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
 import AddWorkout from "$lib/ui/userpageui/AddWorkout.svelte";
+import {Toast} from "@skeletonlabs/skeleton";
 
 let username : string
 let page
@@ -63,5 +64,6 @@ function changeslot(i : number){
             <Settings></Settings>
         {/if}
     </div>
+    <Toast/>
 
 </div>
