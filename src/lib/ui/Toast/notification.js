@@ -18,6 +18,7 @@ function createNotificationStore (timeout) {
         if ($_notifications.length > 0) {
             const timer = setTimeout(() => {
                 _notifications.update(state => {
+                    
                     state.shift()
                     return state
                 })
