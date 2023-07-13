@@ -10,7 +10,7 @@
 
     function check() {
         console.log(name.value)
-        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" || time === "") {
+        if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" ) {
 
             notifications.warning("Pls fill every input", 4000)
         } else {
