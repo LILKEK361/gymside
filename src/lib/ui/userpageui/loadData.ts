@@ -52,7 +52,7 @@ export async function setAllData(){
                 })
 
     const cloneDes  = Object.fromEntries(allDes)
-    localStorage.setItem("AllDataPre", JSON.stringify(cloneDes));
+    localStorage.setItem("AllDataPre", JSON.stringify(cloneDes))
     const cloneLevels  = Object.fromEntries(allLevels)
     localStorage.setItem("AllDataLevel", JSON.stringify(cloneLevels));
 
