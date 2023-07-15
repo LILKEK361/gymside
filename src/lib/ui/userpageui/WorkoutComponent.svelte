@@ -49,7 +49,7 @@
                     <WorkoutCardComponent name={name} time={data.workouts[name].time}
                                           getdata = {getData}
                                           uebunegen={data.workouts[name].uebungen}
-                                          level={data.workouts[name].level}
+
                                           setContent={setContent}
                                           />
                 </li>

@@ -15,19 +15,19 @@
 
     export let setContent : any
 
-    export  function getDes(nameUe : string){
-        let data : any =  localStorage.getItem("AllDataPre")
-        data =  JSON.parse(data)
-
+     function getDes(nameUe : string){
+        const data  =   JSON.parse(localStorage.getItem("AllDataPre"))
+        console.log((data))
 
         if(Object.keys(data).includes(nameUe)){
+            console.log("Included")
             return data[nameUe]
         }
 
         return "des"
     }
-    export  function getLevel(nameUe : string){
-        let data : any =  localStorage.getItem("AllDataLevel")
+    async function getLevel(nameUe : string){
+        let data : any =  await localStorage.getItem("AllDataLevel")
         data =  JSON.parse(data)
 
 

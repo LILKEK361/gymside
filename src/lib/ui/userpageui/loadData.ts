@@ -42,16 +42,12 @@ export async function setAllData(){
                     allLevels.set(element.name, element.level)
                 })
 
-                Object.keys(customEx).map((element : any) => {
-                    allDes.set(customEx[element].name, customEx[element].description)
-                    allLevels.set(customEx[element].name, customEx[element].level)
 
-                })
-
-             
-                })
+                
+            })
 
     const cloneDes  = Object.fromEntries(allDes)
+
     localStorage.setItem("AllDataPre", JSON.stringify(cloneDes))
     const cloneLevels  = Object.fromEntries(allLevels)
     localStorage.setItem("AllDataLevel", JSON.stringify(cloneLevels));

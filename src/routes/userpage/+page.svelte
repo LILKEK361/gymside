@@ -10,6 +10,7 @@ import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
 import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
 import AddWorkout from "$lib/ui/userpageui/AddWorkout.svelte";
 import {Toast} from "@skeletonlabs/skeleton";
+import {setAllData} from "$lib/ui/userpageui/loadData";
 
 let username : string
 let page
@@ -33,6 +34,7 @@ onMount(async () => {
     console.log(id);
     await getusername(id)
     await getOwnEx()
+    await setAllData
     })
 
 function changeslot(i : number){
