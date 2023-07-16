@@ -4,6 +4,7 @@ import {element} from "svelte/internal";
 
 
 export async function setAllData(){
+    
     const allDes : Map<string, string> = new Map<string, string>()
     const allLevels : Map<string, string> = new Map<string, string>()
     const customEx : object = customExFB()
