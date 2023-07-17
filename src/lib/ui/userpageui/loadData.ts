@@ -18,6 +18,7 @@ export async function setAllData(){
 
 
                await data.legs.map((element : any) => {
+                   
                     allDes.set(element.name, element.description)
                 })
                 await data.back.map((element : any) => {
