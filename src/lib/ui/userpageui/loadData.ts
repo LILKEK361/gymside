@@ -11,7 +11,8 @@ export async function setAllData(){
 
 
     fetch("src/lib/Workoutdata/Alldata.json")
-            .then(response => response.json()
+
+        .then(response => response.json()
 
             )
             .then( async (data) => {
