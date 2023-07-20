@@ -34,7 +34,7 @@ onMount(async () => {
     console.log(id);
     await getusername(id)
     await getOwnEx()
-    await setAllData
+
     })
 
 function changeslot(i : number){

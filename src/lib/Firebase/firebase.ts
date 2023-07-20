@@ -19,6 +19,8 @@ import {notifications} from "$lib/ui/Toast/notification";
 
 
 
+
+
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -274,5 +276,15 @@ export  function customExFB(){
        customEX = snapshot.val()
     })
     return customEX
+
+}
+
+export async function write(path : string, data : any){
+    const startref = ref(db, path)
+
+    await set(startref, data).catch((error) => {
+        const errorcode = error.code
+        notifications.warning("Error" + errorcode)
+    })
 
 }
