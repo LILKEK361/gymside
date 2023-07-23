@@ -15,11 +15,6 @@ import 'firebase/firestore'
 import 'firebase/auth';
 import {notifications} from "$lib/ui/Toast/notification";
 
-
-
-
-
-
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -278,6 +273,7 @@ export  function customExFB(){
 
 }
 
+
 export function getDesFromName(name : string ){
     const startref = ref(db, "/Alldata")
     let des;
@@ -304,4 +300,14 @@ export function getDesFromName(name : string ){
 
 function customSearch(name : string){
     
+
+export async function write(path : string, data : any){
+    const startref = ref(db, path)
+
+    await set(startref, data).catch((error) => {
+        const errorcode = error.code
+        notifications.warning("Error" + errorcode)
+    })
+
+
 }

@@ -18,8 +18,9 @@
     export let setContent : any
 
 
-    export  function getLevel(nameUe : string){
-        let data : any =  localStorage.getItem("AllDataLevel")
+    async function getLevel(nameUe : string){
+        let data : any =  await localStorage.getItem("AllDataLevel")
+
         data =  JSON.parse(data)
 
 
