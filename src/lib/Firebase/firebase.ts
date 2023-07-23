@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 
-import {initializeApp,} from "firebase/app";
+import {initializeApp} from "firebase/app";
 
 import {
     createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup,GithubAuthProvider
@@ -14,6 +14,7 @@ import 'firebase/firestore'
 
 import 'firebase/auth';
 import {notifications} from "$lib/ui/Toast/notification";
+
 
 
 
@@ -275,4 +276,32 @@ export  function customExFB(){
     })
     return customEX
 
+}
+
+export function getDesFromName(name : string ){
+    const startref = ref(db, "/Alldata")
+    let des;
+    onValue(startref, (snapshot) => {
+        snapshot.val().arms.map((element : object) => {if(element.name === name){
+            console.log(element.description)
+            des =  element.description}})
+        snapshot.val().back.map((element : object) => {if(element.name === name){
+            console.log(element.description)
+            des =  element.description}})
+        snapshot.val().chest.map((element : object) => {if(element.name === name){
+            console.log(element.description)
+            des =  element.description}})
+        snapshot.val().legs.map((element : object) => {if(element.name === name){
+            console.log(element.description)
+            des =  element.description}})
+    })
+    if(!des){
+        customSearch(name)
+    }
+
+   return des
+}
+
+function customSearch(name : string){
+    
 }

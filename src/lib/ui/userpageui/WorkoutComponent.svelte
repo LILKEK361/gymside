@@ -3,7 +3,8 @@
     import {onMount} from "svelte";
     import {getWorkouts, } from "$lib/Firebase/firebase";
     import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
-    import {setAllData} from "$lib/ui/userpageui/loadData";
+    import {getDesFromName} from "$lib/Firebase/firebase";
+
     import ExerciseCard from "$lib/ui/userpageui/ExerciseCard.svelte";
 
     let names = [];
@@ -18,7 +19,7 @@
     onMount(async () => {
         data = await getWorkouts();
         names = data.names;
-        setAllData()
+
 
 
 
@@ -49,7 +50,7 @@
                     <WorkoutCardComponent name={name} time={data.workouts[name].time}
                                           getdata = {getData}
                                           uebunegen={data.workouts[name].uebungen}
-                                          level={data.workouts[name].level}
+
                                           setContent={setContent}
                                           />
                 </li>

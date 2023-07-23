@@ -3,6 +3,8 @@
     import {deleteWorkout} from "$lib/Firebase/firebase";
     import ExerciseText from "$lib/ui/userpageui/ExerciseText.svelte";
     import {onMount} from "svelte";
+    import {getDesFromName} from "$lib/Firebase/firebase";
+
 
 
 
@@ -15,17 +17,7 @@
 
     export let setContent : any
 
-    export  function getDes(nameUe : string){
-        let data : any =  localStorage.getItem("AllDataPre")
-        data =  JSON.parse(data)
 
-
-        if(Object.keys(data).includes(nameUe)){
-            return data[nameUe]
-        }
-
-        return "des"
-    }
     export  function getLevel(nameUe : string){
         let data : any =  localStorage.getItem("AllDataLevel")
         data =  JSON.parse(data)
@@ -55,7 +47,7 @@
                 {#each uebunegen as uebuneg}
                     <ExerciseText
                             setContent={setContent}
-                            dataForEx={getDes(uebuneg)}
+                            dataForEx={getDesFromName(uebuneg)}
                             level={getLevel(uebuneg)}
                             name={uebuneg} />
 
