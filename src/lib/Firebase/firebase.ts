@@ -3,7 +3,12 @@
 import {initializeApp} from "firebase/app";
 
 import {
-    createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup,GithubAuthProvider
+    createUserWithEmailAndPassword,
+    getAuth,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup
 } from "firebase/auth"
 
 import {getDatabase, onValue, ref, set} from "firebase/database"
@@ -275,33 +280,66 @@ export  function customExFB(){
 
 
 export function getDesFromName(name : string ){
+    const checkData = readAllForName(name)
+
+    if (checkData) {
+        return checkData
+    } else {
+        const checkUserEx = customSearch(name)
+        if (checkUserEx) {
+            return checkUserEx
+        }
+    }
+
+    return "Error: Exercise isn't in DB"
+}
+
+function customSearch(name: string) {
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx")
+    let des;
+    onValue(startref, (snapshot) => {
+        if(Object.keys(snapshot.val()).includes(name)){
+            des = snapshot.val()[name].way
+        }
+    })
+    return des
+}
+
+function readAllForName(name: string) {
     const startref = ref(db, "/Alldata")
     let des;
     onValue(startref, (snapshot) => {
-        snapshot.val().arms.map((element : object) => {if(element.name === name){
-            console.log(element.description)
-            des =  element.description}})
-        snapshot.val().back.map((element : object) => {if(element.name === name){
-            console.log(element.description)
-            des =  element.description}})
-        snapshot.val().chest.map((element : object) => {if(element.name === name){
-            console.log(element.description)
-            des =  element.description}})
-        snapshot.val().legs.map((element : object) => {if(element.name === name){
-            console.log(element.description)
-            des =  element.description}})
-    })
-    if(!des){
-        customSearch(name)
-    }
+        snapshot.val().arms.map((element: object) => {
+            if (element.name === name) {
 
-   return des
+                des = element.description
+            }
+        })
+        snapshot.val().back.map((element: object) => {
+            if (element.name === name) {
+
+                des = element.description
+            }
+        })
+        snapshot.val().chest.map((element: object) => {
+            if (element.name === name) {
+
+                des = element.description
+            }
+        })
+        snapshot.val().legs.map((element: object) => {
+            if (element.name === name) {
+
+                des = element.description
+            }
+        })
+    })
+
+    return des
 }
 
-function customSearch(name : string){
-    
 
-export async function write(path : string, data : any){
+export async function write(path: string, data: any) {
     const startref = ref(db, path)
 
     await set(startref, data).catch((error) => {
