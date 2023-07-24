@@ -1,7 +1,9 @@
+
 <script lang="ts">
     import {onMount} from "svelte";
-    import {Toast} from "@skeletonlabs/skeleton";
+    import Toast from "$lib/ui/Toast/Toast.svelte";
     import {createWorkout, getOwnEx} from "$lib/Firebase/firebase";
+    import {notifications} from "$lib/ui/Toast/notification";
     let time : any
     let workoutname;
     let dataUeLeg = [];
@@ -29,19 +31,22 @@
     function addUebung(name : string){
         if(!newWorkout.includes(name)){
             newWorkout = [...newWorkout, name]
+
+
+
         }else{
-           alert("Exercersie already added")
+            notifications.danger("Exercersie already added", 800)
         }
     }
     function createnewWorkout(){
         if(workoutname && time) {
             createWorkout(workoutname, newWorkout, time)
-            alert("Your Workout was added <3")
+            notifications.success("Added to DB <3", 800)
             newWorkout = []
             workoutname = ""
             time = ""
         }else{
-            alert("pls choose a workout name")
+            notifications.danger("Choose a workoutname", 2000)
         }
 
     }
@@ -94,6 +99,7 @@
        </ul>
    </div>
     <div class="w-[50%] h-full text-center justify-center bg-[#282828]">
+        <Toast />
         <h1 class="text-3xl m-4">Live preview:</h1 >
         <ul>
             <li>
@@ -119,4 +125,5 @@
                 </li>
         </ul>
     </div>
+
 </div>

@@ -12,9 +12,10 @@
         console.log(name.value)
         if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" ) {
 
-            notifications.warning("Pls fill every input", 4000)
+            notifications.danger("Pls fill every input", 800)
         } else {
             addnew(name.value, level.value, way.value, muscel.value)
+            notifications.success("Added to DB", 800)
             level.value = ""
             name.value = ""
             way.value = ""
@@ -47,14 +48,14 @@
         <ul on:keydown={handlekeydown}>
             <li><h1 class="text-center font-bold text-2xl">Add a new exercise</h1></li>
             <li>
-               <input bind:this={name} class="my-10" placeholder="Name" type="text">
+               <input bind:this={name} class="my-10 text-black" placeholder="Name" type="text">
             </li>
 
             <li>
-                <input bind:this={level} class="my-10" placeholder="Level" type="text">
+                <input bind:this={level} class="my-10 text-black" placeholder="Level" type="text">
             </li>
             <li>
-                <input bind:this={way} class="my-10" placeholder="execution" type="text">
+                <input bind:this={way} class="my-10 text-black" placeholder="execution" type="text">
             </li>
             <li>
                 <input bind:this={muscel} class="my-10 text-black" placeholder="muscelgroup" type="text">
