@@ -24,7 +24,7 @@
 
         <ul>
             <li class="text-2xl">{title}</li>
-            <li >{des}</li>
+            <li>{des}</li>
             <li>{level}</li>
         </ul>
 
