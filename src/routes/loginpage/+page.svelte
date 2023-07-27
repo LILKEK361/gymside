@@ -38,7 +38,13 @@
 
     /*async function signupGit() {
         await loginWithGit()
-    }*/</script>
+    }*/
+</script>
+<svelte:head>
+    <title>Gym Manager</title>
+
+</svelte:head>
+
 
 
 <div class="w-full h-full flex justify-center items-center">

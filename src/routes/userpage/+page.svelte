@@ -47,6 +47,13 @@ function changeslot(i : number){
 
 
 </script>
+
+<svelte:head>
+    <title>Gym Manager</title>
+
+</svelte:head>
+
+
 <div class="w-[100vw] h-[100vh] flex text-[#FF3131]">
 
     <div class="w-[10vw] h-[100vh]">
