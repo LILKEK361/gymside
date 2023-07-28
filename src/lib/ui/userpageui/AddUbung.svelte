@@ -9,7 +9,7 @@
     let muscel
 
     function check() {
-        console.log(name.value)
+
         if (name.value === "" || level.value === "" || way.value === "" || muscel.value === "" ) {
 
             notifications.danger("Pls fill every input", 800)
@@ -65,11 +65,6 @@
                 <button class="btn" on:click={check}>Add new</button>
             </li>
         </ul>
-
-
-
-
-
     </div>
     <Toast />
 </div>

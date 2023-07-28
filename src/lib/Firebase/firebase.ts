@@ -17,14 +17,13 @@ import {writable} from "svelte/store";
 import {goto} from "$app/navigation";
 import 'firebase/firestore'
 
-import 'firebase/auth';
 import {notifications} from "$lib/ui/Toast/notification";
 
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
 
-// TODO: Add SDKs for Firebase products that you want to use
+
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -170,13 +169,13 @@ export function deleteEx(name: string) {
     })
 }
 
-async function  userexist(userid : string){
+ function  userexist(userid : string){
     const startRef = ref(db, "/user/")
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
 
-     await onValue(startRef, (snapshot) => {
+      onValue(startRef, (snapshot) => {
          snapshot.forEach((child) => {if (child.key == userid) {
              return true;
          }})
