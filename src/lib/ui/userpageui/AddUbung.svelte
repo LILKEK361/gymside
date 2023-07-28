@@ -34,7 +34,8 @@
 <svelte:head >
     <link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
 </svelte:head>
-
+//Limit Uebungen to 40
+//Make secrutity 
 <div class="h-[100%] w-[100%] flex justify-center items-center" >
     <div style="padding: 5vw;
                 border-radius: 30px;
