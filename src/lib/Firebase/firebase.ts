@@ -18,6 +18,8 @@ import {goto} from "$app/navigation";
 import 'firebase/firestore'
 
 import {notifications} from "$lib/ui/Toast/notification";
+import firebase from "firebase/compat";
+import DataSnapshot = firebase.database.DataSnapshot;
 
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
@@ -163,20 +165,15 @@ export function deleteEx(name: string) {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
     set(startref, null).catch((error) => {
         const errorcode = error.code
-    }).catch((error) => {
-        const errorcode = error.code
         notifications.warning("Error: " + errorcode);
     })
 }
 
  function  userexist(userid : string){
     const startRef = ref(db, "/user/")
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
 
-
-      onValue(startRef, (snapshot) => {
-         snapshot.forEach((child) => {if (child.key == userid) {
+      onValue(startRef, (snapshot : any) => {
+         snapshot.forEach((child : any) => {if (child.key == userid) {
              return true;
          }})
 
@@ -246,7 +243,7 @@ export async function getWorkouts(){
     let workoutsdata = {}
     let names : Array<string> = []
 
-    await onValue(startref, (snapshot) => {
+     onValue(startref, (snapshot) => {
         workoutsdata = snapshot.val()
         snapshot.forEach((child) => {
 
