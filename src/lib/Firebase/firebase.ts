@@ -18,8 +18,7 @@ import {goto} from "$app/navigation";
 import 'firebase/firestore'
 
 import {notifications} from "$lib/ui/Toast/notification";
-import firebase from "firebase/compat";
-import DataSnapshot = firebase.database.DataSnapshot;
+
 
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()

@@ -19,6 +19,7 @@
     onMount(async () => {
         data = await getWorkouts();
         names = data.names;
+        console.log(data)
 
 
 
@@ -44,25 +45,28 @@
 {#if data && names}
 
     //Limit Workouts to five
-    <div class="w-[100%] h-[100%] flex justify-center  overflow-hidden">
-        <div class="h-[100%] w-[50%] flex justify-center overflow-y-scroll">
-        <ul >
-            {#each names as name}
-                <li class="m-5">
-                    <WorkoutCardComponent name={name} time={data.workouts[name].time}
-                                          getdata = {getData}
-                                          uebunegen={data.workouts[name].uebungen}
+    <div class="h-[100%] w-[100%] flex">
 
-                                          setContent={setContent}
-                                          />
-                </li>
-            {/each}
-        </ul>
-        </div>
-        <div class="h-[100%] w-[50%]">
-            <ExerciseCard title={exTitle} level={exLevel} des={exDes} />
+        <div class="h-[100%] w-[10%] bg-black">
+
+            <ul>
+                {#each names as name}
+                    <li on:click={console.log(data.workouts[name])}>{name}</li>
+                    {/each}
+            </ul>
 
         </div>
+        <div class="h-[100%] w-[90%] bg-blue-50 ">
+            <table class="w-[100%]">
+                <tr>
+                    <td>Name</td>
+                    <td>Level</td>
+                    <td>Description</td>
+                </tr>
+                
+            </table>
+        </div>
+
     </div>
     {:else }
     <p>Loading</p>
