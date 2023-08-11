@@ -9,6 +9,7 @@
 
     let names = [];
     let data : any
+    let currentWorkout : string
 
 
 
@@ -34,11 +35,11 @@
 
     }
 
-    export async function getData() {
-        data = await getWorkouts();
-        names = data.names;
-
+    function setCurrentWorkout(name : string){
+        currentWorkout = name
+        console.log(currentWorkout)
     }
+
 
 </script>
 
@@ -51,19 +52,29 @@
 
             <ul>
                 {#each names as name}
-                    <li on:click={console.log(data.workouts[name])}>{name}</li>
+                    <li on:click={setCurrentWorkout(name)}>{name}</li>
                     {/each}
             </ul>
 
         </div>
         <div class="h-[100%] w-[90%] bg-blue-50 ">
+            <div class="h-[5%] w-[100%] bg-accent">Header with time</div>
             <table class="w-[100%]">
                 <tr>
-                    <td>Name</td>
-                    <td>Level</td>
-                    <td>Description</td>
+                    <td>Name:</td>
+                    <td>Level:</td>
+
                 </tr>
-                
+                {#if currentWorkout}
+                    {#each data.workouts[currentWorkout].uebungen as uebung}
+                        <tr>
+                            <td>{uebung}</td>
+                            <td>{"Level"}</td>
+                        </tr>
+                    {/each}
+                    {:else}
+                    <t></t>
+                {/if}
             </table>
         </div>
 
