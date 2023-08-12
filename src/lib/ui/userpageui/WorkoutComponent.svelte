@@ -48,7 +48,7 @@
     //Limit Workouts to five
     <div class="h-[100%] w-[100%] flex">
 
-        <div class="h-[100%] w-[10%] bg-black">
+        <div class="h-[100%] w-[10%] bg-black overflow-scroll">
 
             <ul>
                 {#each names as name}
