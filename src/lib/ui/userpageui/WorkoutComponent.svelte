@@ -61,14 +61,14 @@
             <div class="h-[5%] w-[100%] bg-accent">Header with time</div>
             <table class="w-[100%]">
                 <tr>
-                    <td>Name:</td>
+                    <td class="w-[80%]">Name:</td>
                     <td>Level:</td>
 
                 </tr>
                 {#if currentWorkout}
                     {#each data.workouts[currentWorkout].uebungen as uebung}
                         <tr>
-                            <td>{uebung}</td>
+                            <td class="w-[80%]">{uebung}</td>
                             <td>{"Level"}</td>
                         </tr>
                     {/each}
