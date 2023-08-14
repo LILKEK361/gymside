@@ -2,7 +2,7 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import Toast from "$lib/ui/Toast/Toast.svelte";
-    import {createWorkout, getOwnEx} from "$lib/Firebase/firebase";
+    import {checklimit, createWorkout, getOwnEx} from "$lib/Firebase/firebase";
     import {notifications} from "$lib/ui/Toast/notification";
     let time : any
     let workoutname;
@@ -40,11 +40,15 @@
     }
     function createnewWorkout(){
         if(workoutname && time) {
-            createWorkout(workoutname, newWorkout, time)
-            notifications.success("Added to DB <3", 800)
-            newWorkout = []
-            workoutname = ""
-            time = ""
+            if(checklimit(9, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")){
+                createWorkout(workoutname, newWorkout, time)
+                notifications.success("Added to DB <3", 800)
+                newWorkout = []
+                workoutname = ""
+                time = ""
+            }else{
+                notifications.danger("You can only have 5 workouts", 2000)
+            }
         }else{
             notifications.danger("Choose a workoutname", 2000)
         }

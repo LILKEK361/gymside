@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {addnew} from "$lib/Firebase/firebase";
+    import {addnew, checklimit} from "$lib/Firebase/firebase";
     import {notifications} from '../Toast/notification'
     import Toast from '../Toast/Toast.svelte'
 
@@ -14,12 +14,17 @@
 
             notifications.danger("Pls fill every input", 800)
         } else {
-            addnew(name.value, level.value, way.value, muscel.value)
-            notifications.success("Added to DB", 800)
-            level.value = ""
-            name.value = ""
-            way.value = ""
-            muscel.value = ""
+
+            if (checklimit(40, "/user/" + localStorage.getItem("userid") + "/ownEx/")) {
+                addnew(name.value, level.value, way.value, muscel.value)
+                notifications.success("Added to DB", 800)
+                level.value = ""
+                name.value = ""
+                way.value = ""
+                muscel.value = ""
+            } else {
+                notifications.danger("You can only have 40 exercise ", 2000)
+            }
         }
     }
 

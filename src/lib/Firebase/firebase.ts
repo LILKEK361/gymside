@@ -344,3 +344,18 @@ export async function write(path: string, data: any) {
 
 
 }
+
+export function checklimit(max : number, path : string){
+
+    const startref = ref(db, path);
+    let count = 0
+    onValue(startref, (snapshot) => {
+        snapshot.forEach((child) => {
+            count ++
+        })
+    })
+
+    if(count < max){
+        return true
+    }return false
+}
