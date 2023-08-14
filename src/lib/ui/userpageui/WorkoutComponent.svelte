@@ -19,12 +19,19 @@
     let exLevel : string
 
     onMount(async () => {
-        data = await getWorkouts()
-        console.log(data)
-        data = JSON.stringify(data)
-        await localStorage.setItem(  "WorkoutData", data );
+        if(localStorage.getItem("WorkoutData")){
+            data = await JSON.parse(localStorage.getItem("WorkoutData"))
+            names = data["names"]
+            console.log(data)
+            console.log(names)
+        }else {
+            data = await getWorkouts()
+            names = data.names
+            const workout = JSON.stringify(data)
+            await localStorage.setItem("WorkoutData", workout);
+        }
 
-        console.log(JSON.parse(localStorage.getItem("WorkoutData")))
+        setCurrentWorkout(localStorage.getItem("currentWorkout"))
 
 
 
@@ -42,27 +49,25 @@
 
     function setCurrentWorkout(name : string){
         currentWorkout = name
+        localStorage.setItem("currentWorkout", name)
 
     }
-    function setCurrentWorkoutLocal(current : string){
 
-        localStorage.setItem(JSON.stringify())
 
-    }
 
 </script>
 
 {#if data && names}
 
-    //Limit Workouts to five
-    <div class="h-[100%] w-[100%] flex">
 
-        <div class="h-[100%] w-[10%] bg-black overflow-scroll bg-[#15171F]">
+    <div class="h-[100%] w-[100%] flex bg-black overflow-hidden ">
 
-            <ul class="text-start list-none">
-                <li class="text-2xl">Workouts:</li>
+        <div class="h-[100%] w-[10%] bg-black  bg-[#15171F]  ">
+
+            <ul class="text-start list-none mt-14 ">
+                <li class="text-2xl ml-2">Workouts:</li>
                 {#each names as name}
-                    <li ><div class="text-xl mt-6 p-[2%] bg-[#838383] rounded-r " on:click={setCurrentWorkout(name)}>{name}</div></li>
+                    <li ><div class="text-xl mt-6 p-[2%] bg-[#838383] rounded-r pl-4 " on:click={setCurrentWorkout(name)}>{name}</div></li>
                     {/each}
             </ul>
 
@@ -72,13 +77,16 @@
             <table class="w-[100%]">
                 <tr>
                     <td class="w-[80%]border-r-4  text-2xl">Exercise:</td>
-                    <td class="border-l-4  text-2xl">Level:</td>
+                    <td class="border-l-4  text-2xl text-center">Level:</td>
 
                 </tr>
                 {#if currentWorkout}
-                    {async () => {
-                        getData()
-                    } }
+                    {#each data.workouts[currentWorkout].uebungen as uebung}
+                        <tr>
+                            <td class="w-[80%] border-r-4  text-2xl">{uebung}</td>
+                            <td class="border-l-4  text-2xl text-center">{"Level"}</td>
+                        </tr>
+                    {/each}
 
 
 

@@ -54,7 +54,7 @@ function changeslot(i : number){
 </svelte:head>
 
 
-<div class="w-[100vw] h-[100vh] flex text-[#FF3131]">
+<div class="w-[100vw] h-[100vh] flex text-[#FF3131] overflow-hidden">
 
     <div class="w-[10vw] h-[100vh]">
         <Sidebar  userid={username} changepage={changeslot }></Sidebar>

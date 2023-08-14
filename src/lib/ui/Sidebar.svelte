@@ -3,7 +3,7 @@
     export let changepage
 </script>
 
-<div class="w-[100%] h-[100%] ">
+<div class="w-[100%] h-[100%] border-r-4  border-gray-500">
     <ul>
         <li class="text-center flex justify-center">
             <img src="src/lib/logo/PP.png" alt="pp" class="w-[50%] rounded-3xl my-10 "/>
