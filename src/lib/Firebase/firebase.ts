@@ -20,6 +20,8 @@ import 'firebase/firestore'
 import {notifications} from "$lib/ui/Toast/notification";
 
 
+
+
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -300,7 +302,7 @@ function customSearch(name: string) {
     return des
 }
 
-function readAllForName(name: string) {
+function readAllForDes(name: string) {
     const startref = ref(db, "/Alldata")
     let des;
     onValue(startref, (snapshot) => {
@@ -332,10 +334,79 @@ function readAllForName(name: string) {
 
     return des
 }
+export   function readAllForLevel(name: string) {
+    const startref = ref(db, "/Alldata")
+    let level
+     onValue(startref, async (snapshot) => {
+          level = await filterData(snapshot, "level", name)
 
 
-export async function write(path: string, data: any) {
-    const startref = ref(db, path)
+    })
+
+    if (level){
+        localStorage.setItem(name + "Level", level )
+    }else {
+        let userLevel
+        const userref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
+        onValue(userref, async (snapshot) => {
+
+            userLevel = await filterUserData(snapshot, "level", name)
+
+        })
+
+        return userref
+    }
+
+    return ""
+}
+
+async function filterUserData(snapshot : any, key : string, name : string){
+    let thing : any
+    snapshot.val().map((element : object) => {
+        if (element.name === name) {
+
+            thing = element[key]
+        }
+    })
+
+    return thing
+
+}
+async function filterData(snapshot: any, key : string, name : string){
+
+    let thing : any
+
+    snapshot.val().arms.map((element: object) => {
+        if (element.name === name) {
+
+            thing = element[key]
+        }
+    })
+    snapshot.val().back.map((element: object) => {
+        if (element.name === name) {
+
+            thing = element[key]
+        }
+    })
+    snapshot.val().chest.map((element: object) => {
+        if (element.name === name) {
+
+            thing = element[key]
+        }
+    })
+    snapshot.val().legs.map((element: object) => {
+        if (element.name === name) {
+
+            thing = element[key]
+            console.log(thing)
+        }
+    })
+
+    return thing
+}
+
+export async function write(startref:  any , data: any) {
+
 
     await set(startref, data).catch((error) => {
         const errorcode = error.code

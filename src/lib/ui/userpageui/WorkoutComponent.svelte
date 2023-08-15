@@ -4,6 +4,7 @@
     import {getWorkouts, } from "$lib/Firebase/firebase";
     import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
     import {getDesFromName} from "$lib/Firebase/firebase";
+    import {readAllForLevel} from "$lib/Firebase/firebase"
 
     import ExerciseCard from "$lib/ui/userpageui/ExerciseCard.svelte";
 
@@ -53,6 +54,14 @@
 
     }
 
+    function setAndgetLevel(name : string){
+       async function setLevel(name : string) {
+                readAllForLevel(name)
+        }
+        setLevel(name)
+       return  localStorage.getItem(name + "Level")
+    }
+
 
 
 </script>
@@ -84,7 +93,10 @@
                     {#each data.workouts[currentWorkout].uebungen as uebung}
                         <tr>
                             <td class="w-[80%] border-r-4  text-2xl">{uebung}</td>
-                            <td class="border-l-4  text-2xl text-center">{"Level"}</td>
+                            <td class="border-l-4  text-2xl text-center">{setAndgetLevel(uebung) }
+
+
+                                </td>
                         </tr>
                     {/each}
 
