@@ -334,8 +334,9 @@ function readAllForDes(name: string) {
 
     return des
 }
-export   function readAllForLevel(name: string) {
+export async   function readAllForLevel(name: string) {
     const startref = ref(db, "/Alldata")
+    console.log(name)
     let level
      onValue(startref, async (snapshot) => {
           level = await filterData(snapshot, "level", name)
@@ -346,15 +347,16 @@ export   function readAllForLevel(name: string) {
     if (level){
         localStorage.setItem(name + "Level", level )
     }else {
+
         let userLevel
         const userref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
         onValue(userref, async (snapshot) => {
 
-            userLevel = await filterUserData(snapshot, "level", name)
+            userLevel = await  filterUserData(snapshot, "level", name)
 
         })
-
-        return userref
+        console.log(userLevel)
+        return userLevel
     }
 
     return ""
@@ -362,10 +364,13 @@ export   function readAllForLevel(name: string) {
 
 async function filterUserData(snapshot : any, key : string, name : string){
     let thing : any
-    snapshot.val().map((element : object) => {
-        if (element.name === name) {
+    console
 
-            thing = element[key]
+    Object.entries(snapshot).map((element : any) => {
+        if (element[0] == name) {
+
+            thing = element[1].key
+
         }
     })
 
@@ -377,27 +382,27 @@ async function filterData(snapshot: any, key : string, name : string){
     let thing : any
 
     snapshot.val().arms.map((element: object) => {
-        if (element.name === name) {
-
-            thing = element[key]
+        if ((element.name).replace(" ", "") === name.replace(" ", "")) {
+            console.log(element.level)
+            thing = element.key
         }
     })
     snapshot.val().back.map((element: object) => {
         if (element.name === name) {
 
-            thing = element[key]
+            thing = element.key
         }
     })
     snapshot.val().chest.map((element: object) => {
         if (element.name === name) {
 
-            thing = element[key]
+            thing = element.key
         }
     })
     snapshot.val().legs.map((element: object) => {
         if (element.name === name) {
 
-            thing = element[key]
+            thing = element.key
             console.log(thing)
         }
     })
