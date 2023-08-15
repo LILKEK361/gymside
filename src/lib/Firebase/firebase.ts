@@ -20,8 +20,6 @@ import 'firebase/firestore'
 import {notifications} from "$lib/ui/Toast/notification";
 
 
-
-
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -336,44 +334,47 @@ function readAllForDes(name: string) {
 }
 export async   function readAllForLevel(name: string) {
     const startref = ref(db, "/Alldata")
-    console.log(name)
+
     let level
      onValue(startref, async (snapshot) => {
-          level = await filterData(snapshot, "level", name)
+         level = await filterData(snapshot, "level", name)
+
+         if (level ) {
+             localStorage.setItem(name + "Level", level)
+         } else {
 
 
-    })
+             const userRef = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
+             onValue(userRef, async (snapshot) => {
+                 console.log(snapshot.val())
+                 level = await filterUserData(snapshot.val(), "level", name)
+                 if(level){
+                     localStorage.setItem(name + "Level", level)
+                 }else{
+                     localStorage.setItem(name + "Level", "Error")
+                 }
+             })
 
-    if (level){
-        localStorage.setItem(name + "Level", level )
-    }else {
+         }
 
-        let userLevel
-        const userref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
-        onValue(userref, async (snapshot) => {
 
-            userLevel = await  filterUserData(snapshot, "level", name)
+     })
 
-        })
-        console.log(userLevel)
-        return userLevel
-    }
 
-    return ""
 }
 
 async function filterUserData(snapshot : any, key : string, name : string){
     let thing : any
-    console
+
 
     Object.entries(snapshot).map((element : any) => {
-        if (element[0] == name) {
+        if (element[0] === name) {
 
-            thing = element[1].key
+            thing = element[1].level
 
         }
     })
-
+    console.log(thing)
     return thing
 
 }
@@ -384,25 +385,25 @@ async function filterData(snapshot: any, key : string, name : string){
     snapshot.val().arms.map((element: object) => {
         if ((element.name).replace(" ", "") === name.replace(" ", "")) {
             console.log(element.level)
-            thing = element.key
+            thing = element.level
         }
     })
     snapshot.val().back.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.key
+            thing = element.level
         }
     })
     snapshot.val().chest.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.key
+            thing = element.level
         }
     })
     snapshot.val().legs.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.key
+            thing = element.level
             console.log(thing)
         }
     })
