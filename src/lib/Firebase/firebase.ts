@@ -332,7 +332,7 @@ function readAllForDes(name: string) {
 
     return des
 }
-export async   function readAllForLevel(name: string) {
+export async   function readAllForLevel(name: string, workout : string) {
     const startref = ref(db, "/Alldata")
 
     let level
@@ -347,11 +347,11 @@ export async   function readAllForLevel(name: string) {
              const userRef = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
              onValue(userRef, async (snapshot) => {
                  console.log(snapshot.val())
-                 level = await filterUserData(snapshot.val(), "level", name)
-                 if(level){
+                 level = await filterUserData(snapshot.val(), "level", name, workout)
+                 if(level != "N/A"){
                      localStorage.setItem(name + "Level", level)
                  }else{
-                     localStorage.setItem(name + "Level", "Error")
+                     localStorage.setItem(name + "Level", "N/A")
                  }
              })
 
@@ -363,18 +363,39 @@ export async   function readAllForLevel(name: string) {
 
 }
 
-async function filterUserData(snapshot : any, key : string, name : string){
+async function filterUserData(snapshot : any, key : string, name : string, workout : string){
     let thing : any
-
+    let count : number = 0
 
     Object.entries(snapshot).map((element : any) => {
         if (element[0] === name) {
 
-            thing = element[1].level
+            if(element[1].hasOwnProperty(key)){
+                thing = element[1][key]
+                console.log(thing)
+            }else{
+                thing = "N/A"
+            }
 
+        }else{
+            count ++
         }
+
     })
+
+    if(count ===   Object.entries(snapshot).length ){
+        thing = "N/A"
+
+    }
+
+
+
+        // Check if the user object has a property with the provided name
+
+
+
     console.log(thing)
+
     return thing
 
 }
@@ -383,7 +404,7 @@ async function filterData(snapshot: any, key : string, name : string){
     let thing : any
 
     snapshot.val().arms.map((element: object) => {
-        if ((element.name).replace(" ", "") === name.replace(" ", "")) {
+        if (element.name === name) {
             console.log(element.level)
             thing = element.level
         }
@@ -404,7 +425,7 @@ async function filterData(snapshot: any, key : string, name : string){
         if (element.name === name) {
 
             thing = element.level
-            console.log(thing)
+
         }
     })
 
