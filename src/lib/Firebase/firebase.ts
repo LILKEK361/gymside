@@ -20,6 +20,7 @@ import 'firebase/firestore'
 import {notifications} from "$lib/ui/Toast/notification";
 
 
+
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -255,12 +256,14 @@ export async function getWorkouts(){
 
 
 
-export function deleteWorkout(name : string){
+export function deleteWorkout(name : string, ){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/" + name)
     set(startref, null).catch((error) => {
         const errorcode = error.code
         notifications.warning("Error: " + errorcode);
     })
+
+
 }
 
 export  function customExFB(){
@@ -346,7 +349,7 @@ export async   function readAllForLevel(name: string, workout : string) {
 
              const userRef = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
              onValue(userRef, async (snapshot) => {
-                 console.log(snapshot.val())
+
                  level = await filterUserData(snapshot.val(), "level", name, workout)
                  if(level != "N/A"){
                      localStorage.setItem(name + "Level", level)
@@ -372,7 +375,7 @@ async function filterUserData(snapshot : any, key : string, name : string, worko
 
             if(element[1].hasOwnProperty(key)){
                 thing = element[1][key]
-                console.log(thing)
+
             }else{
                 thing = "N/A"
             }
@@ -394,7 +397,6 @@ async function filterUserData(snapshot : any, key : string, name : string, worko
 
 
 
-    console.log(thing)
 
     return thing
 
@@ -405,26 +407,27 @@ async function filterData(snapshot: any, key : string, name : string){
 
     snapshot.val().arms.map((element: object) => {
         if (element.name === name) {
-            console.log(element.level)
-            thing = element.level
+
+            thing = element[key]
         }
     })
     snapshot.val().back.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.level
+            thing = element[key]
+
         }
     })
     snapshot.val().chest.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.level
+            thing = element[key]
         }
     })
     snapshot.val().legs.map((element: object) => {
         if (element.name === name) {
 
-            thing = element.level
+            thing = element[key]
 
         }
     })
