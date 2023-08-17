@@ -6,7 +6,7 @@
     export let ex;
 </script>
 
-<div class="w-[100%] h-[30%] flex justify-center items-center">
+<div class="w-[100%] h-[30%] flex-warp">
     {#each names as name}
     <UebungCard
             exercisename={name}
