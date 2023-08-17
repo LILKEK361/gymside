@@ -73,7 +73,7 @@
         </div>
         <div class="h-[100%] w-[90%] bg-blue-50 flex justify-center items-center ">
 
-            <table class="w-[80%]">
+            <table class="w-[80%] max-h-[70%] overflow-scroll bg-gray-800 ">
                 <tr>
                 <td class="w-[80%]border-r-4  text-2xl">{currentWorkout}</td>
                 <td class="border-l-4  text-2xl text-center">Time: {getTime(currentWorkout)}</td>
