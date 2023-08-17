@@ -9,11 +9,12 @@ import AddUbung from "$lib/ui/userpageui/AddUbung.svelte";
 import OwnEx from "$lib/ui/userpageui/OwnEx.svelte";
 import WorkoutComponent from "$lib/ui/userpageui/WorkoutComponent.svelte";
 import AddWorkout from "$lib/ui/userpageui/AddWorkout.svelte";
-import {Toast} from "@skeletonlabs/skeleton";
+import {notifications} from "$lib/ui/Toast/notification"
+import Toast from "$lib/ui/Toast/Toast.svelte";
 
 
 let username : string
-let page
+let page : number
 let id : any;
 
 async function getusername(id : string){
@@ -28,7 +29,7 @@ async function getusername(id : string){
 
 
 onMount(async () => {
-    id = await localStorage.getItem("userid");
+    id =  localStorage.getItem("userid");
 
     page = parseInt(localStorage.getItem("userpage"))
     console.log(id);

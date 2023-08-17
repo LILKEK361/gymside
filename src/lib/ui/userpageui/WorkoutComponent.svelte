@@ -2,13 +2,12 @@
 
     import {onMount} from "svelte";
     import {deleteWorkout, getWorkouts,} from "$lib/Firebase/firebase";
-    import WorkoutCardComponent from "$lib/ui/userpageui/WorkoutCardComponent.svelte";
-    import {getDesFromName} from "$lib/Firebase/firebase";
+
     import {readAllForLevel} from "$lib/Firebase/firebase"
+    import {notifications} from "$lib/ui/Toast/notification"
+    import Toast from "$lib/ui/Toast/Toast.svelte";
 
-    import ExerciseCard from "$lib/ui/userpageui/ExerciseCard.svelte";
-
-    let names = [];
+    let names : Array<string>;
     let data : any
 
     let currentWorkout = "Placeholder"
@@ -49,16 +48,17 @@
       return "N/A"
     }
 
-    function destory(){
-        deleteWorkout(currentWorkout)
+    function destory(workoutname : string){
+        deleteWorkout(workoutname)
         LoadData()
+        setCurrentWorkout("Placeholder")
     }
 
 </script>
 
 {#if data && names}
 
-
+    {#key localStorage.getItem("WorkoutData")}
     <div class="h-[100%] w-[100%] flex bg-black overflow-hidden ">
 
         <div class="h-[100%] w-[10%]   bg-[#15171F]  ">
@@ -102,7 +102,10 @@
 
                 {/if}
             </table>
+            <button type="button" on:click={() => {if(currentWorkout !== "Placeholder"){destory(currentWorkout)}else{notifications.danger("You haven’t selected a workout", 3000)}}}>Delete current Workout</button>
         </div>
 
     </div>
+    {/key}
 {/if}
+<Toast />
