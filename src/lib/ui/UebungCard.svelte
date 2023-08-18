@@ -2,11 +2,8 @@
 
     import {deleteEx} from "$lib/Firebase/firebase";
 
-    export let exercisename;
-    export let Muskelgroup;
-    export let doing;
+    export let exercisename : string;
 
-    export let level
 
 
 
@@ -22,9 +19,7 @@
     </figure>
     <div class="card-body ">
         <h2 class="card-title">Exercise: {exercisename}</h2>
-        <p>Level: {level}</p>
-        <p>Muscle group: {Muskelgroup}</p>
-        <p>Execution: {doing}</p>
+
         <button class="btn" on:click={deleteEx(exercisename)}>Delete</button>
     </div>
 </div>
