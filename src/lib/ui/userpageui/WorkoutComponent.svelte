@@ -6,9 +6,11 @@
     import {readAllForLevel} from "$lib/Firebase/firebase"
     import {notifications} from "$lib/ui/Toast/notification"
     import Toast from "$lib/ui/Toast/Toast.svelte";
+    import {writable} from "svelte/store";
 
     let names : Array<string>;
-    let data : any
+    let data = {name : [], workouts : []}
+
 
     let currentWorkout = "Placeholder"
 
@@ -16,13 +18,14 @@
 
        await  LoadData()
 
+
     })
 
     const LoadData = async () => {
         data = await getWorkouts()
         names = data.names
         const workout = JSON.stringify(data)
-        await localStorage.setItem("WorkoutData", workout);
+        localStorage.setItem("WorkoutData", workout);
     }
 
 

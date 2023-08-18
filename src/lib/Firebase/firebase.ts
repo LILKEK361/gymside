@@ -132,33 +132,14 @@ export  function addnew(name: string, level: string, ausfuehrung: string, muscel
 
 export async function getOwnEx() {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
-    localStorage.setItem("namesEx", "")
-    localStorage.setItem("ownEx", "")
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    let names = [];
-    let ex = {}
+    let data = {};
 
-    await onValue(startref, (snapshot) => {
+    onValue(startref, (snapshot) => {
 
-        ex = snapshot.val()
+       data = snapshot.val();
 
-        snapshot.forEach((child) => {
-
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            names = [...names, child.key]
-
-        })
-        if (ex && names) {
-            localStorage.setItem("namesEx", names)
-            localStorage.setItem("ownEx", JSON.stringify(ex))
-        } else {
-            localStorage.setItem("namesEx", "")
-            localStorage.setItem("ownEx", JSON.stringify(""))
-        }
     })
-
+    return data;
 }
 
 export function deleteEx(name: string) {
