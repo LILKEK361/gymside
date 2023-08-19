@@ -4,6 +4,8 @@
 
     export let chunck : Array<Array<string>> = [[""]]
 
+    export let setup : any
+
 </script>
 
 
@@ -11,7 +13,7 @@
 
 
         {#each chunck as s}
-            <ExCard name={s}></ExCard>
+            <ExCard name={s} setup={setup}></ExCard>
         {/each}
 
     </div>

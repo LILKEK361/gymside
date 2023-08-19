@@ -7,10 +7,10 @@
     import {notifications} from "$lib/ui/Toast/notification"
     import Toast from "$lib/ui/Toast/Toast.svelte";
 
-    import UebungCard from "$lib/ui/UebungCard.svelte";
+
 
     let names : Array<string>;
-    let data = {name : [], workouts : []}
+    let data: { names: Array<string>; workouts: {} } = {name : [], workouts : []}
 
 
     let currentWorkout = "Placeholder"
@@ -112,5 +112,5 @@
     </div>
     {/key}
 {/if}
-<UebungCard exercisename="sss"></UebungCard>
+
 <Toast />
