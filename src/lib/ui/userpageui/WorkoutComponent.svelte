@@ -6,7 +6,8 @@
     import {readAllForLevel} from "$lib/Firebase/firebase"
     import {notifications} from "$lib/ui/Toast/notification"
     import Toast from "$lib/ui/Toast/Toast.svelte";
-    import {writable} from "svelte/store";
+
+    import UebungCard from "$lib/ui/UebungCard.svelte";
 
     let names : Array<string>;
     let data = {name : [], workouts : []}
@@ -111,4 +112,5 @@
     </div>
     {/key}
 {/if}
+<UebungCard exercisename="sss"></UebungCard>
 <Toast />

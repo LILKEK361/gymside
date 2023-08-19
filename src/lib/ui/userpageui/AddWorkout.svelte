@@ -78,6 +78,7 @@
            <li>
                <div class="h-[55vh] w-[100%] overflow-y-scroll">
                    <p>Legs:</p>
+
                    {#each dataUeLeg as name}
                        <div><button on:click={addUebung(name)} class="m-1 bg-purple-800 p-2 rounded-xl text-black">Add</button> {name}</div>
                    {/each}
