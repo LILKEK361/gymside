@@ -2,4 +2,4 @@
     export let name : string
 </script>
 
-<div class="w-[20vw] h -[20vh]">{name}</div>
+<div class="w-[10vw] h-[20vh] m-5 bg-gray-900 ">{name}</div>
