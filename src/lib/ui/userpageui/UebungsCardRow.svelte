@@ -22,13 +22,16 @@
 </script>
 
 
-    <div class="w-[100%] h-[30%] flex justify-center items-center  ">
+    <div class="w-[100%] h-[30%] flex justify-center items-center mt-4  ">
 
 
         {#each chunck as s}
             <div class="card">
                 <ul>
-                    <li>{s}</li>
+                    <li class="text-2xl w-full text-center">{"Name: " + s}</li>
+                    <li class="text-xl w-full text-center">{"Level: " + s}</li>
+                    <li class="text-xl w-full text-center">{"Muscelgroup: " + s}</li>
+                    <li class="text-xl w-full text-center">{"Des: " + s}</li>
                     <li><button class="button-base-styles bg-gray-200" on:click={destroy(s)}>Delete</button></li>
                 </ul>
 
@@ -43,8 +46,7 @@
         width: 190px;
         height: 254px;
         border-radius: 30px;
-        background: #e0e0e0;
-        box-shadow: 15px 15px 30px #bebebe,
-        -15px -15px 30px #ffffff;
+
+
     }
 </style>
