@@ -259,7 +259,7 @@ export  function customExFB(){
 
 
 export function getDesFromName(name : string ){
-    const checkData = readAllForName(name)
+    const checkData = readAllForDes(name)
 
     if (checkData) {
         return checkData
@@ -440,4 +440,20 @@ export function checklimit(max : number, path : string){
     if(count < max){
         return true
     }return false
+}
+
+export async function  getOwnData(name : string){
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
+    let ownData : object
+    await onValue(startref, (snapshot) =>  {
+        console.log(snapshot)
+        /*snapshot.val().forEach((element : object) => {
+                if(element.name === name){
+                    ownData = element
+                }
+            })*/
+
+    })
+
+    return ownData
 }
