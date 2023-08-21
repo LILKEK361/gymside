@@ -93,14 +93,14 @@ export async function login(email: string, password: string) {
             localStorage.setItem("userid", user.uid)
 
             goto("userpage")
-            return true;
-            // ...
+
+
         })
         .catch((error) => {
             const errorcode = error.code
             notifications.warning("Error: " + errorcode);
         })
-    return true;
+    return false;
 
 }
 

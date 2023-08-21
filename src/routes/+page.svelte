@@ -6,7 +6,7 @@
 	import {onMount} from "svelte";
 
 onMount(() => {
-	localStorage.setItem("userid", "")
+
 	localStorage.setItem("userpage", (1).toString())
 })
 </script>

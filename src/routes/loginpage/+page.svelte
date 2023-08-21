@@ -4,6 +4,7 @@
     import {login, loginWithGit, loginWithGoogle, signup} from "$lib/Firebase/firebase";
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
+    import Toast from "$lib/ui/Toast/Toast.svelte";
 
 
     let email: any
@@ -14,9 +15,7 @@
     })
 
     async function loginuser() {
-
-
-        let t = await login(email.value, password.value)
+       await login(email.value, password.value)
 
 
         //password.value = ""
@@ -26,7 +25,7 @@
 
     async function signupuser() {
 
-        let t = await signup(email.value, password.value)
+       await signup(email.value, password.value)
 
 //password.value = ""
 //email.value = ""
@@ -52,10 +51,9 @@
     <div class="w-[100vw] h-[100vh] ">
 
 
-        <div class="w-[100%] h-[100%] bg-gray-700 flex justify-center items-center " id="Lopgin">
-            <div class="w-[40vw] h-[60vh] text-center bg-gray-900 rounded-2xl">
+        <div class="w-[100%] h-[100%] bg-gray-700 flex justify-center items-center " id="Lopgin" >
+            <div class="w-[25%] h-[60%] text-center bg-gray-900 rounded-l-2xl flex justify-center items-center ">
 
-                <ul class="p-8">
 
                     <!--
                     <li>
@@ -63,35 +61,41 @@
                             GitHub
                         </button>
                     </li> -->
-                    <li>
-
-
+                    <div>
+                    <div>
                         <button class="overflow-hidden m-4" on:click={signupGoogle}>
                             Google
                         </button>
-                    </li>
-                    <div class="divider">OR</div>
-                    <li>
-                        <input bind:this={email} class=" m-4 rounded-full text-black  " placeholder="E-Mail"
-                               type="text">
-                    </li>
-                    <li>
-                        <input bind:this={password} class="m-4 rounded-full text-black" placeholder="password"
-                               type="text">
-                    </li>
-                    <li class="pt-5">
-                        <button class=" h-[5vh] w-[10vw]  bg-purple-800 text-black px-3 text-center rounded "
-                                on:click={signupuser}>Sign Up
-                        </button>
-                        <button class=" h-[5vh] w-[10vw] bg-purple-800 text-black px-3 rounded" on:click={loginuser}>
-                            Login
-                        </button>
+                    </div>
 
-                    </li>
 
-                </ul>
+
+
+                    <div class="divider ">OR</div>
+                    <div class="w-full h-[50%] ">
+                        <div>
+                            <input bind:this={email} class=" m-4 rounded-full text-black  " placeholder="E-Mail"
+                                   type="text">
+
+                            <input bind:this={password} class="m-4 rounded-full text-black" placeholder="password"
+                                   type="text">
+                        </div>
+                        <div class="flex justify-center items-center">
+                            <button class=" h-[5vh] w-[10vw]  bg-purple-800 text-black px-3 text-center rounded mr-4 "
+                                    on:click={signupuser}>Sign Up
+                            </button>
+                            <button class=" h-[5vh] w-[10vw] bg-purple-800 text-black px-3 rounded" on:click={loginuser}>
+                                Login
+                            </button>
+                        </div>
+                    </div>
+
+
 
             </div>
+            </div>
+            <div class="w-[25%] h-[60%] bg-gray-800 rounded-r-2xl" ></div>
         </div>
     </div>
+    <Toast/>
 </div>
