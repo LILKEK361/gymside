@@ -443,17 +443,17 @@ export function checklimit(max : number, path : string){
 }
 
 export async function  getOwnData(name : string){
-    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
+    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
     let ownData : object
-    await onValue(startref, (snapshot) =>  {
-        console.log(snapshot)
-        /*snapshot.val().forEach((element : object) => {
-                if(element.name === name){
-                    ownData = element
-                }
-            })*/
 
+    onValue(startref, (snapshot) =>  {
+
+        if(snapshot) {
+            console.log(snapshot.val())
+            ownData = snapshot.val()
+        }else{
+            ownData = {name : name, des : "N/A", level : "N/A", musclegroup : "N/A"}
+        }
     })
-
-    return ownData
+    return ownData;
 }

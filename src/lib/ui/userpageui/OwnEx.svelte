@@ -50,8 +50,8 @@
 </script>
 
 
-    <div class="w-full h-full flex justify-center items-center bg-gray-800">
-        <div class="w-[90%] h-[90%]  ">
+    <div class="w-full h-full flex justify-center items-center bg-gray-800 overflow-scroll">
+        <div class="w-[90%] h-[90%]    ">
             {#each chunks as row}
                 <UebungsCardRow chunck={row} setup={(setup)} />
             {/each}
