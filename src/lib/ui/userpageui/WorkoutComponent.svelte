@@ -38,9 +38,9 @@
 
     function setAndgetLevel(name : string){
        async function setLevel(name : string) {
-                readAllForLevel(name, currentWorkout)
-        }
-        setLevel(name)
+                await readAllForLevel(name, currentWorkout)
+       }
+       setLevel(name)
        return  localStorage.getItem(name + "Level")
     }
 

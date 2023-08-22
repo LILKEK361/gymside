@@ -316,7 +316,7 @@ function readAllForDes(name: string) {
 
     return des
 }
-export async   function readAllForLevel(name: string, workout : string) {
+export async  function readAllForLevel(name: string, workout : string) {
     const startref = ref(db, "/Alldata")
 
     let level
@@ -349,35 +349,12 @@ export async   function readAllForLevel(name: string, workout : string) {
 
 async function filterUserData(snapshot : any, key : string, name : string, workout : string){
     let thing : any
-    let count : number = 0
 
-    Object.entries(snapshot).map((element : any) => {
-        if (element[0] === name) {
-
-            if(element[1].hasOwnProperty(key)){
-                thing = element[1][key]
-
-            }else{
-                thing = "N/A"
-            }
-
-        }else{
-            count ++
-        }
-
-    })
-
-    if(count ===   Object.entries(snapshot).length ){
+    if(Object.keys(snapshot).includes(name)){
+        thing = snapshot[name][key]
+    }else{
         thing = "N/A"
-
     }
-
-
-
-        // Check if the user object has a property with the provided name
-
-
-
 
     return thing
 
