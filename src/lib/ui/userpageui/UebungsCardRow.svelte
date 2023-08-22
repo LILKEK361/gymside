@@ -10,11 +10,7 @@
 
 
     export let setup : any
-    onMount(async () => {
-        chunck.map( async (element : any) => {
-            data = [...data, await getOwnData(element)]
-        })
-    })
+
     function destroy(name : string){
         console.log(name && setup)
         if(name && setup){
@@ -26,19 +22,14 @@
         }
     }
 
-    function getVal(name : string, key : string){
-        let val : any = "N/A"
+
+    async function getVal(name : string, key : string){
+        const data =  await getOwnData(name)
         console.log(data)
-
-        data.map((element : object) => {
-            if(element[name] === name){
-                val =  element[key]
-            } else {
-                val = "N/A"
-            }
-        })
-        return val
-
+        if(data[key]){
+            return data[key]
+        }
+        return  "N/A"
     }
 
 
@@ -51,11 +42,30 @@
         {#each chunck as s}
             <div class="card flex w-[20vw] h-[40vh]">
                 <ul class="">
-                    <li class="text-2xl w-full text-center">{"Name: " + getVal(s, "name")}
+                    <li class="text-2xl w-full text-center">
+                        Name:
+                        {#await getVal(s, "name") then value}
+                            {value}
+
+                        {/await}
                     </li>
-                    <li class="text-xl w-full text-center">{"Level: " + getVal(s, "level")}</li>
-                    <li class="text-xl w-full text-center">{"Muscelgroup: " + s }</li>
-                    <li class="text-xl w-full text-center">{"Des: " + getDesFromName(s)}</li>
+                    <li class="text-xl w-full text-center">Level:
+                            {#await getVal(s, "level") then value}
+                                {value}
+                            {/await}
+                    </li>
+                    <li class="text-xl w-full text-center">
+                        Muscelgroup:
+                        {#await getVal(s, "muscelgroup") then value}
+                            {value}
+                        {/await}
+                    </li>
+                    <li class="text-xl w-full text-center">
+                        Description:
+                        {#await getVal(s, "way") then value}
+                            {value}
+                        {/await}
+                    </li>
                 </ul>
 
                 <div class="flex items-end justify-end h-full w-full">

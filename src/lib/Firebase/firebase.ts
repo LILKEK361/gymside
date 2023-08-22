@@ -442,7 +442,7 @@ export function checklimit(max : number, path : string){
     }return false
 }
 
-export async function  getOwnData(name : string){
+export async function  getOwnData(name : string,){
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/" + name)
     let ownData : object
 
