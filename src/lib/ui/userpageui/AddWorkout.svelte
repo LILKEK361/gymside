@@ -40,7 +40,7 @@
         }
     }
     function createnewWorkout(){
-        if(workoutname && time) {
+        if(workoutname && time && newWorkout.length !== 0){
             if(checklimit(9, "/user/" + localStorage.getItem("userid") + "/ownWorkouts/")){
                 createWorkout(workoutname, newWorkout, time)
                 notifications.success("Added to DB <3", 800)
@@ -48,10 +48,16 @@
                 workoutname = ""
                 time = ""
             }else{
-                notifications.danger("You can only have 5 workouts", 2000)
+                notifications.danger("You can only have 9 workouts", 2000)
             }
-        }else{
+        }else if(!workoutname){
             notifications.danger("Choose a workoutname", 2000)
+        }else if(!time){
+            notifications.danger("Pls enter a valid time",2000)
+        }else if(newWorkout.length === 0){
+            notifications.danger("Pls choose exercises for the newWokrout", 2000)
+        }else{
+            notifications.danger("A unknown error occurred", 2000)
         }
 
     }

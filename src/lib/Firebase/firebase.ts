@@ -410,7 +410,7 @@ export function checklimit(max : number, path : string){
     let count = 0
     onValue(startref, (snapshot) => {
         snapshot.forEach((child) => {
-            count ++
+            count = Object.entries(snapshot.val()).length
         })
     })
 
