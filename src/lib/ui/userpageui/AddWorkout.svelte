@@ -10,7 +10,8 @@
     let dataUeChest = [];
     let dataUeArms = [];
     let dataUeBack = [];
-    let cusotmnames = []
+    let cusotmnames = [];
+    let customData = {};
     let newWorkout =  [];
 
 
@@ -25,8 +26,8 @@
                 dataUeBack = [...data.chest.map((x) => { return x.name}) ]
             })
 
-        await getOwnEx()
-        cusotmnames   = await localStorage.getItem("namesEx")?.split(",")
+        customData = await getOwnEx()
+        cusotmnames   = Object.keys(customData)
     })
     function addUebung(name : string){
         if(!newWorkout.includes(name)){
