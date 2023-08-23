@@ -52,6 +52,7 @@
                     <li class="text-xl w-full text-center">Level:
                             {#await getVal(s, "level") then value}
                                 {value}
+                                
                             {/await}
                     </li>
                     <li class="text-xl w-full text-center">
