@@ -70,31 +70,31 @@
             <ul class="text-start list-none mt-2 ">
                 <li class="text-2xl ml-2">Workouts:</li>
                 {#each names as name}
-                    <li ><div class={currentWorkout === name ? "text-xl mt-6 p-[2%] bg-[#838383] rounded-r pl-2  w-full bg-[#4444]   " : "text-xl mt-6 p-[2%] bg-[#838383] rounded-r pl-2  w-full hover:bg-[#4444] "} on:click={setCurrentWorkout(name)}>{name}</div></li>
+                    <li><div class={currentWorkout === name ? "text-xl mt-6 p-[2%] bg-[#838383] rounded-r pl-2  w-full bg-[#4444]   " : "text-xl mt-6 p-[2%] bg-[#838383] rounded-r pl-2  w-full hover:bg-[#4444] "} on:click={setCurrentWorkout(name)}>{name}</div></li>
                     {/each}
             </ul>
 
         </div>
         <div class="h-[100%] w-[90%] bg-blue-50 flex justify-center items-center ">
 
-            <table class="w-[80%] max-h-[70%] overflow-scroll bg-gray-800 ">
+            <table class="w-[80%] max-h-[70%] min-h-[50%] overflow-scroll bg-gray-800 rounded-2xl  ">
                 <tr>
-                <td class="w-[80%]border-r-4  text-2xl">{currentWorkout}</td>
-                <td class="border-l-4  text-2xl text-center">Time: {getTime(currentWorkout)}</td>
+                <td class="w-[80%]border-r-4  text-[30px]">Workout: {currentWorkout}</td>
+                <td class="border-l-4  text-[30px] text-center">Time: {getTime(currentWorkout)}</td>
 
                 </tr>
                 <tr>
-                    <td class="w-[80%]border-r-4  text-2xl">Exercise:</td>
-                    <td class="border-l-4  text-2xl text-center">Level:</td>
+                    <td class="w-[80%]border-r-4  text-[30px]">Exercises:</td>
+                    <td class="border-l-4  text-[30px] text-center">Level:</td>
 
                 </tr>
                 {#if currentWorkout !== "Placeholder"}
                     {#each data.workouts[currentWorkout].uebungen as uebung}
-                        <tr>
-                            <td class="w-[80%] border-r-4  text-2xl">
+                        <tr class="m-2">
+                            <td class="w-[80%] border-r-4  text-[30px]">
                                 {uebung}
                             </td>
-                            <td class="border-l-4  text-2xl text-center">
+                            <td class="border-l-4  text-[30px] text-center">
                                 {setAndgetLevel(uebung) }
                             </td>
                         </tr>
