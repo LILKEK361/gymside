@@ -63,7 +63,7 @@
 {#if data && names}
 
     {#key localStorage.getItem("WorkoutData")}
-    <div class="h-[100%] w-[100%] flex bg-black overflow-hidden ">
+    <div class="h-[100%] w-[100%] flex overflow-hidden ">
 
         <div class="h-[100%] w-[10%]   bg-[#15171F]  ">
 
@@ -75,26 +75,26 @@
             </ul>
 
         </div>
-        <div class="h-[100%] w-[90%] bg-blue-50 flex justify-center items-center ">
+        <div class="h-[100%] w-[90%] bg-blue-50 flex justify-center items-center  ">
 
-            <table class="w-[80%] max-h-[70%] min-h-[50%] overflow-scroll bg-gray-800 rounded-2xl  ">
+            <table class="w-[80%] max-h-[70%] min-h-[50%] overflow-scroll bg-gray-800  rounded-2xl  ">
                 <tr>
-                <td class="w-[80%]border-r-4  text-[30px]">Workout: {currentWorkout}</td>
+                <td class="w-[80%]border-r-4 pl-2  text-[30px]">Workout: {currentWorkout}</td>
                 <td class="border-l-4  text-[30px] text-center">Time: {getTime(currentWorkout)}</td>
 
                 </tr>
                 <tr>
-                    <td class="w-[80%]border-r-4  text-[30px]">Exercises:</td>
+                    <td class="w-[80%]border-r-4 pl-2  text-[30px]">Exercises:</td>
                     <td class="border-l-4  text-[30px] text-center">Level:</td>
 
                 </tr>
                 {#if currentWorkout !== "Placeholder"}
                     {#each data.workouts[currentWorkout].uebungen as uebung}
                         <tr class="m-2">
-                            <td class="w-[80%] border-r-4  text-[30px]">
+                            <td class="w-[80%] pl-2 border-r-4  text-[30px]">
                                 {uebung}
                             </td>
-                            <td class="border-l-4  text-[30px] text-center">
+                            <td class="border-l-4 pl-2  text-[30px] text-center">
                                 {setAndgetLevel(uebung) }
                             </td>
                         </tr>
@@ -105,6 +105,7 @@
 
 
                 {/if}
+                
             </table>
             <button type="button" on:click={() => {if(currentWorkout !== "Placeholder"){destory(currentWorkout)}else{notifications.danger("You haven’t selected a workout", 3000)}}}>Delete current Workout</button>
         </div>
@@ -114,3 +115,7 @@
 {/if}
 
 <Toast />
+
+<style>
+
+</style>
