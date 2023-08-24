@@ -7,8 +7,6 @@ I
 src/lib/ui/Sidebar.svelte,2/5/25cd0c1af70aa0997e73ee1d17e22f2eab4d87d5
 M
 src/lib/ui/LogedinSite.svelte,6/3/634b9669716c8a106ae2c75e9eb5226e075d3afb
-H
-src/lib/ui/Navbar.svelte,2/f/2f9c00f5b1b56ac4b86d836427eb95c5e8b944a6
 M
 src/lib/ui/WelcomeText.svelte,4/1/41d50d76029c2807a1b63d470878a03916be3667
 M

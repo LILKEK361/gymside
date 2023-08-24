@@ -63,7 +63,7 @@
 {#if data && names}
 
     {#key localStorage.getItem("WorkoutData")}
-    <div class="h-[100%] w-[100%] flex overflow-hidden ">
+    <div class="h-[100%] w-[100%] flex overflow-hidden  ">
 
         <div class="h-[100%] w-[10%]   bg-[#15171F]  ">
 
@@ -75,7 +75,7 @@
             </ul>
 
         </div>
-        <div class="h-[100%] w-[90%] bg-blue-50 flex justify-center items-center  ">
+        <div class="h-[100%] w-[90%] bg-gray-700 flex justify-center items-center  ">
 
             <table class="w-[80%] max-h-[70%] min-h-[50%] overflow-scroll bg-gray-800  rounded-2xl  ">
                 <tr>
