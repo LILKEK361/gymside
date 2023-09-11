@@ -1,7 +1,7 @@
 <script lang="ts">
 
 
-    import {deleteEx, getDesFromName, getOwnData} from "$lib/Firebase/firebase";
+    import {deleteEx,  getOwnData} from "$lib/Firebase/firebase";
     import {notifications} from "$lib/ui/Toast/notification";
     import {onMount} from "svelte";
 

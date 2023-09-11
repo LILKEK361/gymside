@@ -21,6 +21,7 @@ import {notifications} from "$lib/ui/Toast/notification";
 
 
 
+
 const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider()
 const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider()
 
@@ -242,36 +243,8 @@ export function deleteWorkout(name : string, ){
     set(startref, null).catch((error) => {
         const errorcode = error.code
         notifications.warning("Error: " + errorcode);
-    })
+    })}
 
-
-}
-
-export  function customExFB(){
-    const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
-    let customEX = {}
-    onValue(startref,  async (snapshot) => {
-       customEX = snapshot.val()
-    })
-    return customEX
-
-}
-
-
-export function getDesFromName(name : string ){
-    const checkData = readAllForDes(name)
-
-    if (checkData) {
-        return checkData
-    } else {
-        const checkUserEx = customSearch(name)
-        if (checkUserEx) {
-            return checkUserEx
-        }
-    }
-
-    return "Error: Exercise isn't in DB"
-}
 
 function customSearch(name: string) {
     const startref = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx")
@@ -288,30 +261,7 @@ function readAllForDes(name: string) {
     const startref = ref(db, "/Alldata")
     let des;
     onValue(startref, (snapshot) => {
-        snapshot.val().arms.map((element: object) => {
-            if (element.name === name) {
-
-                des = element.description
-            }
-        })
-        snapshot.val().back.map((element: object) => {
-            if (element.name === name) {
-
-                des = element.description
-            }
-        })
-        snapshot.val().chest.map((element: object) => {
-            if (element.name === name) {
-
-                des = element.description
-            }
-        })
-        snapshot.val().legs.map((element: object) => {
-            if (element.name === name) {
-
-                des = element.description
-            }
-        })
+       des =  filterDataWithKey(snapshot, "description", name)
     })
 
     return des
@@ -321,7 +271,7 @@ export async  function readAllForLevel(name: string, workout : string) {
 
     let level
      onValue(startref, async (snapshot) => {
-         level = await filterData(snapshot, "level", name)
+         level = await filterDataWithKey(snapshot, "level", name)
 
          if (level ) {
              localStorage.setItem(name + "Level", level)
@@ -331,13 +281,14 @@ export async  function readAllForLevel(name: string, workout : string) {
              const userRef = ref(db, "/user/" + localStorage.getItem("userid") + "/ownEx/")
              onValue(userRef, async (snapshot) => {
 
-                 level = await filterUserData(snapshot.val(), "level", name, workout)
+                 level = await filterUserDataWithKey(snapshot.val(), "level", name, workout)
                  if(level != "N/A"){
                      localStorage.setItem(name + "Level", level)
                  }else{
                      localStorage.setItem(name + "Level", "N/A")
                  }
              })
+
 
          }
 
@@ -347,8 +298,8 @@ export async  function readAllForLevel(name: string, workout : string) {
 
 }
 
-async function filterUserData(snapshot : any, key : string, name : string, workout : string){
-    let thing : any
+async function filterUserDataWithKey(snapshot : any, key : string, name : string, workout : string){
+    let thing : string
 
     if(Object.keys(snapshot).includes(name)){
         thing = snapshot[name][key]
@@ -359,7 +310,7 @@ async function filterUserData(snapshot : any, key : string, name : string, worko
     return thing
 
 }
-async function filterData(snapshot: any, key : string, name : string){
+async function filterDataWithKey(snapshot: any, key : string, name : string){
 
     let thing : any
 
